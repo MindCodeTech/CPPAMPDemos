@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>79e4efe0-3417-4cca-bf51-c29a651b432a</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>eb3b2708-9a0d-47ac-9e31-c607b1109033</UniqueIdentifier>
+    </Filter>
+    <Image Include="Assets\Logo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SmallLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SplashScreen.png">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="FrameWork\Game.cpp" />
+    <ClCompile Include="Scenes\SimpleScene.cpp" />
+    <ClCompile Include="Graphics\SpriteBatch.cpp" />
+    <ClCompile Include="FrameWork\System\CpuInfo.cpp" />
+    <ClCompile Include="FrameWork\System\FPS.cpp" />
+    <ClCompile Include="FrameWork\System\Perf.cpp" />
+    <ClCompile Include="Graphics\Shaders\Shader.cpp" />
+    <ClCompile Include="Graphics\Fonts\SpriteFont.cpp" />
+    <ClCompile Include="Graphics\Textures\Texture2D.cpp" />
+    <ClCompile Include="Graphics\Models\Model.cpp" />
+    <ClCompile Include="Graphics\Textures\DDSTextureLoader.cpp" />
+    <ClCompile Include="Graphics\Models\ModelManager.cpp" />
+    <ClCompile Include="FrameWork\Cameras\BaseCamera.cpp" />
+    <ClCompile Include="FrameWork\Input\KeyboardState.cpp" />
+    <ClCompile Include="FrameWork\Input\InputManager.cpp" />
+    <ClCompile Include="FrameWork\Input\PointerState.cpp" />
+    <ClCompile Include="FrameWork\Input\GamePadState.cpp" />
+    <ClCompile Include="FrameWork\Cameras\FirstCamera.cpp" />
+    <ClCompile Include="FrameWork\Cameras\ChaseCamera.cpp" />
+    <ClCompile Include="Scenes\Window.cpp" />
+    <ClCompile Include="App.xaml.cpp" />
+    <ClCompile Include="MainPage.xaml.cpp" />
+    <ClCompile Include="Graphics\Models\Quad.cpp" />
+    <ClCompile Include="Graphics\Models\Triangle.cpp" />
+    <ClCompile Include="Graphics\Textures\RWTexture.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FrameWork\Timer.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="FrameWork\Game.h" />
+    <ClInclude Include="Scenes\SimpleScene.h" />
+    <ClInclude Include="Graphics\SpriteBatch.h" />
+    <ClInclude Include="FrameWork\System\CpuInfo.h" />
+    <ClInclude Include="FrameWork\System\FPS.h" />
+    <ClInclude Include="FrameWork\System\Perf.h" />
+    <ClInclude Include="Graphics\Shaders\Shader.h" />
+    <ClInclude Include="Graphics\Fonts\SpriteFont.h" />
+    <ClInclude Include="Graphics\VertexTypes.h" />
+    <ClInclude Include="Graphics\Textures\Texture2D.h" />
+    <ClInclude Include="Graphics\Shaders\CBuffer.h" />
+    <ClInclude Include="Graphics\Models\Model.h" />
+    <ClInclude Include="Graphics\Textures\DDSTextureLoader.h" />
+    <ClInclude Include="Graphics\Models\ModelManager.h" />
+    <ClInclude Include="FrameWork\Cameras\BaseCamera.h" />
+    <ClInclude Include="FrameWork\MathHelper.h" />
+    <ClInclude Include="FrameWork\Input\KeyboardState.h" />
+    <ClInclude Include="FrameWork\Input\InputManager.h" />
+    <ClInclude Include="FrameWork\Input\PointerState.h" />
+    <ClInclude Include="FrameWork\Input\GamePadState.h" />
+    <ClInclude Include="FrameWork\Cameras\FirstCamera.h" />
+    <ClInclude Include="FrameWork\Cameras\ChaseCamera.h" />
+    <ClInclude Include="Scenes\Window.h" />
+    <ClInclude Include="App.xaml.h" />
+    <ClInclude Include="MainPage.xaml.h" />
+    <ClInclude Include="Graphics\Models\Quad.h" />
+    <ClInclude Include="Graphics\Models\Triangle.h" />
+    <ClInclude Include="Graphics\Models\TessObjectVars.h" />
+    <ClInclude Include="Graphics\Shaders\StructuredBuffer.h" />
+    <ClInclude Include="Graphics\Textures\RWTexture.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Graphics\Shaders\DefaultVertexShader.inc" />
+    <None Include="Chapter5_TemporaryKey.pfx" />
+    <None Include="Assets\Shaders\Parameters.hlsli" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MainPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Assets\Shaders\ComputeShader.hlsl" />
+    <FxCompile Include="Assets\Shaders\VertexShader.hlsl" />
+    <FxCompile Include="Assets\Shaders\PixelShader.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Textures\T0.dds" />
+  </ItemGroup>
+</Project>

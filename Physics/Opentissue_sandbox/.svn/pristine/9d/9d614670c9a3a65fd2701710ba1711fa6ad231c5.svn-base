@@ -1,0 +1,543 @@
+=== Date: June 11, 2009 =============================================
+
+* Removed unsupported trackball demo
+* Removed obsolete volume rendering library
+* Removed obsolete image analysis library
+* Removed volume rendering demo
+- Kenny Erleben
+
+* Added Gauss-Seidel optimization
+* Bug-fix to GMRES when using preconditioning 
+- Ricky Ortiz
+
+* fixed mouse down method in case of for alternate zoom
+* added non-wireframe draw method to DrawArc
+* added vector3_type overloaded ColorPicker loading
+* fixed OTTL demo headers copyright notice
+- Micky Kelager
+
+=== Date: MAj 5, 2009 =============================================
+
+* Changed URLs for boost bindings svn repository
+* CMake Improvement: Added default mac-path to search paths in FindOpenTissue.cmake
+* CMake Improvement: Nuked cmake/FindBoost.cmake which is now included by default in the CMake application
+* CMake Cleanup: Removed a lot of un-used CMake stuf
+- Kenny Erleben
+
+=== Date: April 13, 2009 =============================================
+
+* Changed default IK solver to steepest descent type
+* Made changes to IK box-limits visualization
+- Morten Engell-Noerregaard
+
+* Cleaned up some of the svn:ignore properties
+* UI improvement of IK liberary. Added ACCESSOR class to IK library. Removed some code redundancy and obsolete files.
+-Kenny Erleben 
+
+=== Date: Marts 26, 2009 =============================================
+
+* Added a synchronization function to the inverse kinematic lib. Sets IK parameters from current skeleton pose.
+- Morten Engell-Noerregaard
+
+* Re-facting EDM and SPH to be more compliant with OT current naming convension
+* Re-factored SPH and EDM not to have ulong and string as template parameters. Instead size_t and std:string is now used in place.
+* Re-factored LU routines to have both an ATLAS and non-ATLAS version (define the pre-directive USE_ATLAS to flip between them)
+* Prepared SVD to have both a non-ATLAS version and an ATLAS version, the pre-directive USE_ATLAS will flip between the two versions. However, currently only the ATLAS version is implemented.
+* Removed Cholesky based ATLAS routines
+* Added a new non-ATLAS based SVD implementation
+* Added a fix to make CMake stop whining about linking with libs that do not have a full path... appears to be a new CMake version 2.6 thing.
+- Kenny Erleben
+
+* Bug-fixes and warning eliminations, mac crossplatform compilation test
+* Added som parenthesis around some && in various asserts
+* Fixed issues with memset, memcpy, etc.. They are not in std namespace and should be included from cstring and not string.h
+* Fixed name shadowing problem in typedefs, Force<...> typedef as Force etc..
+* Added inline keyword to all free template functions to support multiple compilation units.
+* Added a few review comments for original author of EDM library
+- Kenny Erleben, Jesper Damkjr
+
+* screen_capture will now use filenames with zero-padded 4 digits frame number
+- Micky Kelager
+
+* Replaced "ILvoid" with "void" in accordance with a similar change in the Devil API.
+- Martin Parm
+
+=== Date: November 26, 2008 =============================================
+
+* Added bug fix in big::unsupported::lu_invert routine by Toke Nielsen
+- Kenny Erleben
+
+=== Date: October 7, 2008 ============================================================================
+
+* Changed the boost-binding installation method. CMake now supports
+  user-specified location of boost-bindings. Besides convenience scripts are
+  supplied for easy installation on windows.
+- Kenny Erleben
+- Jesper Damkjr
+
+* Added inverse kinematics library, see folder OpenTissue/kinematics/inverse
+- Kenny Erleben
+- Morten Engell-Nrregrd
+
+=== Date: September 13, 2008 ============================================================================
+
+* Added a new spline library implemenation. The new library is placed in
+  OpenTissue/core/spline
+- Kenny Erleben
+- Johannes Serup
+  
+* Added new implementation of GJK algorithm. New implementation is based on a
+  geometry approach to the sub-step. A voronoi reduction is done. The new
+  implemenation also holds a lot of parameters for specifying the numerical
+  behaviour and collecting statistics on each run. The code is located in
+  OpenTissue/collision/gjk
+- Kenny Erleben
+
+* Added continous collision detection based on new GJK implementation, have a
+  look in OpenTissue/collision/continuous
+- Kenny Erleben
+
+* Added new approach for dealing with Boost Bindings to our CMake setup.
+- Kenny Erleben
+
+* Made svn repository handle differences in native line-endings
+- Martin Parm
+
+* Bug-fix in Armijo Projected Back-Tracking Routine. The non-descent search
+  direction test was performed after the first projection test. It has now been
+  moved so it is performed before the first projection test. The reason is that
+  the projection alters the search direction.
+- Kenny Erleben
+
+* Added math utility for computing contigous angle intervals. New function is
+  located in the file:
+  OpenTissue/core/math/math_compute_contiguous_angle_interval.h
+- Kenny Erleben
+
+* Added rotate function to free and get_axis_angle function to free quaternion
+  functions. Have a look at it in OpenTissue/core/math/math_quaternion.h 
+- Kenny Erleben
+
+* Added prod(CoordSys, CoordSys) function located in
+  OpenTissue/core/math/math_coordsys.h
+- Kenny Erleben
+
+* Added norm_1 function to vector3 collection of free template functions. New
+  function is in file OpenTissue/core/math/math_vector3.h
+- Kenny Erleben
+
+* Exteded mouse-down method in GLUT application interface to support alt-key.
+  Made new zoom interface method available by pressing ALT + left mouse button.
+- Sune Lje
+- Micky Kelager
+
+
+=== Version 0.994 ============================================================================
+
+* Linuxfication: Removed an superfluous ILvoid from
+il_wrap_wrapper.h which caused gcc to vomit. Added missing
+typename specifications to optimization_bfgs.h, Fixed missing
+spcifications in collision_ray_aabb.h, and Everything now
+compiles under Gentoo linux w. gcc 4.2.x 
+- Sune
+
+Added const bone iterators 
+- Nico
+
+* fixed the SPH demo to match the intended behavior when it comes to zooming, panning, manipulating containers, etc.
+* added application controlled sensitivity to zooming and panning
+* added support for debug drawing single faces in a (poly)mesh.
+* introduced better version defines for compile time usages
+- micky
+
+* Added lib fixes in FindOpenTissue.cmake for ubunto
+- Jesper
+
+
+* Bug fix. The reader would crash if the obj file contained
+  normals but not texture coordinates. It has now been fixed to
+  it works if either normals or texture coords are missing.
+* Fixed include guard in big_matlab_write.h
+* Re-factored big_read_DLM.h to not throw exceptions
+* Added big_write_DLM.h
+* Added new functionality to the BIG library: Random
+  vector/matrix generation, orthonormalization function,
+  positive (semi) definite matrix generation, is_symmetric and
+  is_orthonormal testing functions and unit test for gram_schmidt
+  function.
+* Renamed interface methods in Retro engine to make the
+ functionality more intuitive for end users: set_gamma/get_gamma
+ into set_regularization/get_regularization, set_erp/get_erp into
+ set_error_reduction_parameter/get_error_reduction_parameter, and
+ set_fps/get_fps into set_frames_per_second/get_frames_per_second.
+* Add support for regularization of contact points by extending
+  material properties.
+* Re-factor contact points to support anisotropic friction,
+  multiple friction directions, and pre-determined orientations
+  wrt. a material idx/body.
+* Reduced memory footprint of contact points by eliminating
+  temporaries
+* fixed assertion from big-library when running in release
+  mode...? Argh used nnz instead of filled1 to test outof bounds
+  on a compressed_matrix
+* Steppers should not know anything about values of parameters
+  for the solvers. Regularization, iterations and such should not
+  be something that the stepper is concerned with. That is only
+  the specific solver that should know about this. Warmstarting
+  seems to be something the stepper needs to know, since it needs
+  to gather information to pass along to a solver. Nor should the
+  stepper know anything about how to compute the system matrix.
+  In fact since some solver might not even need this it should be
+  something that the solver should do! Therefore all calls to
+  math_policy::compute_system_matrix should be moved into the
+  solvers. Thus the solver interface needs to be redefined, it
+  should take the J and W matrices as argumens instead of the A
+  system matrix type. The A system matrix type should be killed
+  in the math policies too. Furhter the use_regularization
+  parameter should also be killed! If a solver should be able to
+  use this then one must implement getters and setters on the
+  solver class instead.
+* Reducing memory foot print of retro contact point by removing
+  some of the temporary values that is stored as class members
+* Re-factored retro NCP solver interface (it is now no longer
+  dependent on the system_matrix_type)
+* Removed retro xml io-stuff, this was obsolete and not really
+  supporting the full functionality of the retro engine
+* Cleaned up the NCP solver interface in the retro engine,
+  basically I made sure that steppers did not know anything about
+  how many max iterations that are allowed in a solver or whether
+  to use regularization or not. The interface could be improved
+  even more by replacing system_matrix_type argument with
+  jacobian and inverse matrix arguments (this will be done at
+  later time).
+* Made retro body copyable by adding copy constructor
+* Removed the non-copyable property of the Identifier utility tool
+* Killed MovieMaker this third party dependency was broken, and
+  it seems stupid to keep on using resources to maintain it when
+  there exist excellent tools like FRAPS.
+* Killed all pragma directives for setting up linker to find
+  static lib files. All this functionality is un-called for, we
+  now have CMake, which takes care of all compiler and linker
+  settings for us!
+* Added inline keyword to several function declarations in order
+  to avoid linker problems
+* Added unit_ray_aabb
+* Added unit_polymesh_is_point_inside
+* Bug-fixed collision_ray_aabb utility 
+* Bug-fixed polymesh_is_point_inside (now using a positive ray
+  instead of x-axis)
+* Fixed error in path of CMakelists.txt file for Triangle library
+
+- Kenny
+
+
+=== Version 0.993 ============================================================================
+
+Added OpenTissue Version String.
+Added CMake cache values that allows end-users to turn off unit-tests, documentation, and demos when generating their makefiles using CMake. Unit tests is off by default, since this setting is only needed by OpenTissue Developers.
+- kenny
+
+cleaning up folder structure: data is moved into demos folder, units is renamed into unit_tests, doc is renamed into documentation, and dependencies and externals folders are deleted.
+Refactored externals and dependencies folder into one third_party folder
+-kenny
+
+Added missing include header to compute_tetrahedron_aabb.h
+Fixed problem with point-degenerated triangles and horizontal-line triangles in FragmentIterator
+Made sure that mesh surface from polymesh::make_sphere is correctly orientated
+Removed plot_quality_histogram utility
+Added unit_t4_cpu_scan unit test
+Added unit_t4_gpu_scan unit test
+-Kenny
+
+Renamed GL namespace into gl namespace to make it compliant with OT standard
+-Kenny
+
+Fixed bugs with missing lib for unit test framework
+- Sune
+
+Fixed uppercase issue with Math namespace
+- Sune and Kenny
+
+Fixed vtc face circulator to skip all null faces
+- Micky
+
+Extended T4 gpu scan implementation to compute unsigned distance fields.
+Created polymesh utilities for grouping multiple meshes into one resulting mesh (add2mesh and make).
+Added convenience UI for using the TetGen utility.
+- Kenny
+
+Added OpenTissue::GL::is_framebuffer_object_supported() utility function
+Added OpenTissue::GL::is_texture_float_supported() utility function
+Extended t4_gpu_scan library: it will now return a boolean value indicating whether the used extensions were supported. This way end-users can fall back on the t4_cpu_scan library if wanted. 
+Cleaned up the t4 gpu implementation
+Added CPU/GPU explicit user control to SDF library
+Added CPU/GPU explicit user control to the map_mesh2phi utility
+Added automatic CPU fall-back to the map_mesh2phi utility
+- Kenny
+
+Completed this-pointer issue clean-up of BVH library:
+* fixed shared pointer from this issue, no longer bugged by compiler warnings!
+* bv_traversal_iterator no longer inner class instead it is factored out into its own header file
+* renamed BVH data structure into long name BoundingVolumeHiearchy
+* renamed bv_traits template arguments into 'T'
+* added bvh namespace
+* renamed template arguments into short-names
+* clean-up types
+* verify const correntness on all arguments for all member methods.
+* added unit testing of bvh data structure
+* refactored header files to support the usual include all library header file
+OUTSTANDING:
+* Maybe add unit-tests of the bvh library utilities
+* Need to update Wiki with latest changes in the bvh library
+-kenny
+
+Removed all get_environment_variable("OPENTISSUE") calls from the code. This way
+we better support having multiple versions of OpenTissue on the same machine! 
+- kenny
+
+Now CMake generates OpenTissue/configuration.h, this way we can add platform and
+system specific settings to the header file.
+- kenny
+
+Created new cmake folder and moved all cmake script files into the cmake folder.
+- kenny
+
+Fixed all compile warnings in MSVC for the Triangle library
+Fixed all compile warnings in MSVC for the TetGen library
+- kenny
+
+Added geometric utilities for computing tetrahedron quality measures.
+* compute_inscribed_circumscribed_radius_quality_measure
+* compute_inscribed_radius_length_quality_measure
+* compute_volume_length_quality_measure
+- Kenny
+
+Added utilties for t4mesh. 
+* compute_mesh_quality, this is create for getting a quality vector of a
+tetrahedron mesh. The actual quality measure can be specified as an argument.
+* mel_write, this utility is nice if one wants an simple-minded way to render
+tetrahedra meshes in Maya.
+- kenny
+
+Added OpenTissue/geometry/util/plane_box.h. The PlaneBox is nice for interactive
+manipulation of a plane and visualization of it. See doxygen comments in source code.
+- Kenny
+
+Removed usage of OpenTissue environment variable in CMake
+- Kenny
+
+Renamed idx_type to index_type all through OpenTissue
+- Micky
+
+Cleaned up the folder-organization inside unit-test folder 
+- Kenny
+
+Added
+
+OpenTissue/t4mesh/io/t4mesh_xml_read.h
+OpenTissue/t4mesh/io/t4mesh_xml_write.h
+OpenTissue/t4mesh/utility/tag_traits.h
+
+* Use of tinyxml data structures and routines, i.o. xml tag manipulation.
+
+* Ability to read/write a special 'tag' attribute on the nodes. Enabling is very
+  easy, just subclass your NodeTraits from TagSupportedType. In this case,
+  xml_read/write will take those into account. If not, the runtime will not
+  break.
+
+* xml_has_tags checks if a XML document contains tags. Only required if you
+  explicitly want to check validity of an input file, if your runtime requires
+  the tags to be available. If not, you shouldn't be worried if the file
+  contains tags or not.
+
+- Nico
+
+Added new t4mesh xml unit test, see units/unit_t4mesh/unit_t4mesh_xml/*
+-Kenny
+
+Made OpenTissue::t4mesh::default_point_container more STL compliant
+- Kenny
+
+=== Version 0.992 ============================================================================
+
+Added OSX patch
+- Nico
+
+
+=== Version 0.991 ============================================================================
+
+
+Elastically Deformable Models (edm) library have been refactored.
+Buildt in OpenGL visualization have been removed (no drawing
+members).
+- Micky
+
+Boost Matrix Solver Library have been replaced with BIG library
+- Kenny
+
+BIG library is a matrix library for large scale matrices (i.e.
+big matrices). BIG contains a lot of matrix equation solvers, LU,
+SVD, conjugate gradient, gauss-seidel, jacobi, gmres, cholesky
+factorization. BIG also contains a lot of hand-written
+specialized prod-functions. These exploit the structure of
+ublas::compressed_matrix to achieve higher performance. IO
+routines support both matlab output and DLM input. Needles to say
+every part of OpenTissue that used boost_matrix_solvers have been
+refactored to use the new BIG library. Advantages of BIG over its
+predecessor boost_matrix_solvers:
+
+ * BIG got extensive unit-testing
+ * BIG has been written to support free template functions as well as functors
+ * BIG contains a lot more functionality than its predecessor
+
+Stay tuned for a wiki tutorial (work in progress).
+- Kenny
+
+Retro (the multibody dynamics engine) have been refactored to use
+the new hand-written optimized prod-routines from BIG.
+- Kenny
+
+Function library, This library defines interfaces for common functions that is re-used again and again throughout OpenTissue. Currently it contains the blue-prints for implicit functions and signed distance functions.
+- Micky
+
+Geometry object hierarchy have been refactored. Geometry objects
+now support unique run-time indexing (very helpfull for
+dispatching without having to do dynamic casting). Geometry
+interfaces have been added (see volume shape) to better support
+different kinds of geometries, like volumes vs. plane. A new
+geometry types "Torus" have also been added.
+- Micky and Kenny
+
+Math library have been extended with more fixed type traits:
+three and four. Also a new free template function: clamp have
+been added. 
+- Micky
+
+Runtime type identity utility, this small utility is nice for
+providing unique runtime indices of types. It is for instance
+used in the geometry object hierarchy design.
+- Micky and Kenny
+
+New polymesh utilities: compute_delaynay2D, compute_voronoi,
+compute_dual, and. The First two utilities provide a convinient
+interface for Shewshucks Triangle library (a third-party
+dependency in OpenTissue).
+- Kenny
+
+
+
+=== Version 0.99 ============================================================================
+
+
+- Linuxfication, cross compilation and CMake port to linux
+   Sune Gustav Nielsen (sunegn@diku.dk),
+   Jesper Damkjr (damkjaer@diku.dk),
+   Henrik Dohlmann (henrikd@diku.dk),
+   Kenny Erleben (kenny@diku.dk)
+
+- CMake replaces vcproj/sln and automake/kdevelop files
+   Kenny Erleben (kenny@diku.dk)
+
+- Support for Dashboards (Dart), using CTest
+   Kenny Erleben (kenny@diku.dk)
+
+- CMake install functionality added
+   Kenny Erleben (kenny@diku.dk)
+
+- CMake FindPackage(OpenTissue) support
+   Kenny Erleben (kenny@diku.dk)
+
+- Doxygen generated API documentation
+    * doc folder have been added to source tree
+   Kenny Erleben (kenny@diku.dk)
+
+- Unit-test support using the Boost unit-testing framework
+    * Wiki howto have been written 
+   Kenny Erleben (kenny@diku.dk)
+
+
+- Demo data files are now included in the OpenTissue source tree,
+  no need for getting DataTissue
+   Kenny Erleben (kenny@diku.dk)
+
+
+- ZLib license: LGPL is dropped 
+   Sune Gustav Nielsen (sunegn@diku.dk),
+   Jesper Damkjr (damkjaer@diku.dk),
+   Henrik Dohlmann (henrikd@diku.dk),
+   Kenny Erleben (kenny@diku.dk),
+   Jon Sporring (sporring@diku.dk)
+
+- Moved windows/linux readme files content onto our Wiki
+   Kenny Erleben (kenny@diku.dk)
+
+- New glut application demo framework.
+   * All demos have the same interface
+   * Wiki howto toturial have been written
+   Kenny Erleben (kenny@diku.dk)
+
+- Header enhancement, no longer the need for writing a long
+  copyright notice, a simple 4-liner message is now used.
+   Kenny Erleben (kenny@diku.dk)
+
+- Gobal include header, introduction of the configuration.h file
+  makes it easier to control global settings such as pragma
+  directives.
+   Kenny Erleben (kenny@diku.dk)
+
+- Software T4 scan conversion utility for computing signed
+  distance fields on the CPU
+   Kenny Erleben (kenny@diku.dk)
+
+- Character skinning, both linear and spherical skin blending,
+  both CPU and GPU implementations 
+   Kasper Amstrup Andersen (spreak@spreak.dk)
+
+- New and improved design of Retro multibody dynamics engine
+   Kenny Erleben (kenny@diku.dk)
+
+
+- Value traits
+   Kenny Erleben (kenny@diku.dk)
+
+- Math type binder
+   Kasper Amstrup Andersen (spreak@spreak.dk)
+
+
+- Polymesh, Trimesh, Map, T4Mesh, Retro, Character libraries
+  support new math type binder.
+   Kasper Amstrup Andersen (spreak@spreak.dk),
+   Kenny Erleben (kenny@diku.dk)
+
+- Interval math sublibrary has been added
+   Kenny Erleben (kenny@diku.dk),
+   Henrik Dohlmann (henrikd@diku.dk)
+
+- Boost matrix solvers sublibrary has been rewritten.
+   Kasper Amstrup Andersen (spreak@spreak.dk)
+
+- OBB Tree collision sublibrary have been refactored (query is
+  still incomplete)
+   Kenny Erleben (kenny@diku.dk),
+
+- Object hierarchy of Geometry primitives (Sphere, box, ....,
+  hybrid) have been redesigned. Made sure that primitives can be
+  used without pulling in OpenGL.
+   Kenny Erleben (kenny@diku.dk),
+
+- New namespace/folder naming convention have been applied to
+  many sublibraries: mesh, retro, t4mesh, and character.
+   Kasper Amstrup Andersen (spreak@spreak.dk),
+   Kenny Erleben (kenny@diku.dk)
+
+- damped water equation sublibrary have been added 
+    Micky Kelager (micky@mkc.dk)
+
+- Demo application clean up, lots of demos have been improved,
+  deleted, or converted into unit-tests.
+   Kenny Erleben (kenny@diku.dk)
+
+- Software scan conversion utility has been added, see folder OpenTissue/geometry/util/scan_conversion.
+   Kenny Erleben (kenny@diku.dk)
+   Knud Henriksen (kaiip@diku.dk)
+

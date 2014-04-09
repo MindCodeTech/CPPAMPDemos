@@ -1,0 +1,48 @@
+﻿<Page
+    x:Class="Chapter5.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Chapter5"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <SwapChainBackgroundPanel x:ConnectionId='0' x:Name="SwapChainPanel"
+                         
+                             >
+    </SwapChainBackgroundPanel>
+    <Page.BottomAppBar>
+        <AppBar
+            Padding="10,0,10,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:ConnectionId='0' 
+                    Grid.Column="0"
+                    Style="{StaticResource ButtonStyle}"
+                    ToolTipService.ToolTip = "Exit"
+                    Foreground="Red"
+                    Content ="X"
+                                            >
+                </Button>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton x:ConnectionId='0' Grid.Column="0"
+                        Content ="Show WireFrame"
+                                                >     
+                    </RadioButton>
+                    <RadioButton x:ConnectionId='0' Grid.Column="1"
+                        IsChecked="True"
+                        Content ="Show Solid"
+                                                 >
+                    </RadioButton>
+                </Grid>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
+</Page>
+

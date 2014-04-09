@@ -1,0 +1,37 @@
+#!/bin/sh
+
+#Change following environment variables to your seeting
+CLANG_AMP_HOME=$HOME/Development/cppamp/cppamp-driver-ng # where you checkout source
+CLANG_AMP_BUILD_DIR=$HOME/Development/cppamp/cppamp-driver-ng/build # where you build
+
+#OpenCL settings
+# For NVIDIA
+#OPENCL_INC=/usr/include
+# For ATI
+OPENCL_INC=/opt/AMDAPP/include
+########################################################
+# You probably don't need to change anythig below this #
+########################################################
+CLANG_AMP=$CLANG_AMP_BUILD_DIR/compiler/bin/clang++
+CLAMP_CONFIG=`find $CLANG_AMP_BUILD_DIR/build -name clamp-config -print`
+CLAMP_CXXFLAGS=`$CLAMP_CONFIG --build --cxxflags`
+CLAMP_LDFLAGS=`$CLAMP_CONFIG --build --ldflags`
+CLAMP_DEVICE=$CLANG_AMP_BUILD_DIR/lib/clamp-device
+CLAMP_EMBED=$CLANG_AMP_BUILD_DIR/lib/clamp-embed
+SHARED_CXXFLAGS="$CLAMP_CXXFLAGS -I./include -I$OPENCL_INC"
+
+# GPU
+echo "Compiling for GPU path"
+$CLANG_AMP $SHARED_CXXFLAGS $1 -fno-common -m32 -D__GPU__=1 -Xclang -fcuda-is-device \
+  -emit-llvm -c -S -O2 -o $1.ll
+$CLAMP_DEVICE $1.ll kernel.cl
+if [ -f kernel.cl ]; then
+echo "Embedding kernel.cl"
+$CLAMP_EMBED kernel.cl kernel.o
+
+# CPU Path
+echo "Compiling for CPU path; output is $1.out"
+$CLANG_AMP $SHARED_CXXFLAGS $1 -D__CPU__=1 $CLAMP_LDFLAGS kernel.o -o $1.out -g
+else
+	echo "Problem compiling the GPU kernel."
+fi

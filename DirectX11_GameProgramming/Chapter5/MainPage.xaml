@@ -1,0 +1,96 @@
+﻿<Page
+    x:Class="Chapter4.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Chapter4"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <SwapChainBackgroundPanel x:Name="SwapChainPanel"
+        Loaded="OnLoaded"
+        Unloaded="OnUnloaded">
+        <Grid
+            VerticalAlignment="Top"
+            HorizontalAlignment="Right"
+            Margin="17"
+            Height="160"
+            Width="237"
+            Opacity="0.5"
+            Background="#57169A">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Grid.Column="0"
+                        Style="{StaticResource TextBlockStyle}"
+                        Text ="Negative">
+                    </TextBlock>
+                    <TextBlock 
+                        Style="{StaticResource TextBlockStyle}"
+                        Text ="High Lighter">
+                    </TextBlock>
+                    <TextBlock 
+                        Style="{StaticResource TextBlockStyle}"
+                        Text ="Odd/Even">
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <CheckBox
+                        Style="{StaticResource CheckBoxStyle}"
+                        ToolTipService.ToolTip = "Apply negative post process"
+                        Checked="OnChecked"
+                        Unchecked="OnUnchecked"
+                        Tag="0">
+                    </CheckBox>
+                    <CheckBox                     
+                        Style="{StaticResource CheckBoxStyle}"
+                        ToolTipService.ToolTip = "Apply negative post process"
+                        Checked="OnChecked"                
+                        Unchecked="OnUnchecked"
+                        Tag="1">
+                    </CheckBox>
+                    <CheckBox                    
+                        Style="{StaticResource CheckBoxStyle}"
+                        ToolTipService.ToolTip = "Change odd and even pixels"
+                        Checked="OnChecked"                
+                        Unchecked="OnUnchecked"
+                        Tag="2">
+                    </CheckBox>
+                </StackPanel>
+            </Grid>
+            <ComboBox Grid.Row="1"
+                 Margin="7"
+                 SelectionChanged="OnComboSelectionChanged">
+                <ComboBoxItem>C++AMP</ComboBoxItem>
+                <ComboBoxItem IsSelected="True">Compute Shader</ComboBoxItem>
+            </ComboBox>
+        </Grid>
+    </SwapChainBackgroundPanel>
+    <Page.BottomAppBar>
+        <AppBar
+            Padding="10,0,10,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button 
+                    Grid.Column="0"
+                    ToolTipService.ToolTip = "Exit"
+                    Foreground = "Red"
+                    Width ="50"
+                    Height ="50"
+                    Content ="X"
+                    FontSize ="25"
+                    Click="OnExitBtnClicked">
+                </Button>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
+</Page>

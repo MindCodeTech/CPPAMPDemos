@@ -1,0 +1,33 @@
+#!/bin/sh
+# Build script for clamp C++AMP-to-OpenCL binary package
+#Change following environment variables to your seting
+#OpenCL settings
+# For NVIDIA
+OPENCL_INC=/usr/include
+# For ATI
+#OPENCL_INC=/opt/AMDAPP/include
+###############################################################
+PREFIX=/opt/mcw/
+CLANG_AMP=$PREFIX/bin/clang++
+CLAMP_CONFIG=$PREFIX/bin/clamp-config
+INC=`$CLAMP_CONFIG --install --cxxflags`
+LIB=`$CLAMP_CONFIG --install --ldflags`
+CLAMP_DEVICE=$PREFIX/bin/clamp-device
+CLAMP_EMBED=$PREFIX/bin/clamp-embed
+SHARED_CXXFLAGS="$INC -I./include -I$OPENCL_INC"
+
+# GPU
+echo "Compiling for GPU path"
+$CLANG_AMP $SHARED_CXXFLAGS $1 -m32 -D__GPU__=1 -Xclang -fcuda-is-device \
+  -emit-llvm -c -S -O3 -o $1.ll
+$CLAMP_DEVICE $1.ll kernel.cl
+if [ -f kernel.cl ]; then
+echo "Embedding kernel.cl"
+$CLAMP_EMBED kernel.cl kernel.o
+
+# CPU Path
+echo "Compiling for CPU path; output is $1.out"
+$CLANG_AMP $SHARED_CXXFLAGS $1 -O2 -g -D__CPU__=1 $LIB kernel.o -o $1.out
+else
+  echo "Problem compiling the GPU kernel."
+fi

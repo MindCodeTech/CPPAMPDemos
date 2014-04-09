@@ -1,0 +1,29 @@
+#!/bin/sh
+
+#Change following environment variables to your seeting
+CLANG_AMP_HOME=$HOME/Development/cppamp-driver/ # where you checkout source
+CLANG_AMP_BUILD_DIR=$HOME/Development/cppamp-driver/build # where you build
+CLANG_AMP_BUILD_TYPE=Debug
+#OpenCL settings
+# For NVIDIA
+#OPENCL_INC=/usr/local/cuda/include
+# For ATI
+OPENCL_INC=/opt/AMDAPP/include
+###############################################################
+CLANG_AMP=$CLANG_AMP_BUILD_DIR/compiler/bin/clang++
+LIBCXX_INC=$CLANG_AMP_HOME/libc++/libcxx/include
+LIBCXX_LIB=$CLANG_AMP_BUILD_DIR/libc++/libcxx/lib
+LIBCXXRT_LIB=$CLANG_AMP_BUILD_DIR/libc++/libcxxrt/lib
+GMAC_INC=$CLANG_AMP_HOME/gmac/src/include
+GMAC_LIB=$CLANG_AMP_BUILD_DIR/build/$CLANG_AMP_BUILD_TYPE/lib
+# CPU Path
+echo "Linking CPU and GPU objects"
+if [ -f kernel.o ]; then
+$CLANG_AMP -L$GMAC_LIB kernel.o -lgmac-hpe -lc++ -lcxxrt -ldl \
+  -Wl,--whole-archive -lmcwamp -Wl,--no-whole-archive \
+  -L$LIBCXX_LIB -L$CLANG_AMP_BUILD_DIR/libc++/libcxxrt/lib \
+  -L$CLANG_AMP_BUILD_DIR/build/$CLANG_AMP_BUILD_TYPE/lib \
+  -Wl,--rpath=$GMAC_LIB:$LIBCXX_LIB:$LIBCXXRT_LIB -g "$@"
+else
+	echo "Missing kernel.o"
+fi

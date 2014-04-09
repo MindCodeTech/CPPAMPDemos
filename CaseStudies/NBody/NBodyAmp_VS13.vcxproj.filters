@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="NBodyGravityAmp.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common.h" />
+    <ClInclude Include="NBodyAmp.h" />
+    <CLInclude Include="resource.h">
+      <Filter>UI</Filter>
+    </CLInclude>
+    <ClInclude Include="AmpUtilities.h" />
+    <ClInclude Include="NBodyAmpSimple.h" />
+    <ClInclude Include="NBodyAmpTiled.h" />
+    <ClInclude Include="NBodyAmpMultiTiled.h" />
+    <ClInclude Include="INBodyAmp.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="version.rc">
+      <Filter>UI</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="NBodyGravity.rc">
+      <Filter>UI</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UI\arrow.x">
+      <Filter>UI</Filter>
+    </None>
+    <None Include="UI\dxutcontrols.dds">
+      <Filter>UI</Filter>
+    </None>
+    <None Include="UI\Font.dds">
+      <Filter>UI</Filter>
+    </None>
+    <None Include=".\DXUT\Optional\directx.ico">
+      <Filter>UI</Filter>
+    </None>
+    <None Include="UI\particle.dds">
+      <Filter>UI</Filter>
+    </None>
+    <None Include="ParticleDrawGpu.hlsl">
+      <Filter>UI</Filter>
+    </None>
+    <None Include=".\Main.cd">
+      <Filter>Class diagrams</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="UI">
+      <UniqueIdentifier>{d40d029d-22b6-4aef-b583-bc6b47d35fb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Class diagrams">
+      <UniqueIdentifier>{3fc6c8ee-f026-4fd1-9fd1-ce9e135fc04b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

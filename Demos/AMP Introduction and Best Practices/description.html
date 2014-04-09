@@ -1,0 +1,1362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head><link rel="stylesheet" type="text/css" href="description/Combined.css,1:ImageSprite;/Areas/Epx/Themes/Msdn/Content:0,/Areas/Epx/Content/Css:1&amp;amp;hashKey=E7560C71640616C5057FAEACB58DCB00" xmlns="http://www.w3.org/1999/xhtml" />
+<link rel="stylesheet" type="text/css" href="description/2f95808e-ca34-4249-88ff-44fabe33cdc0Combined.css,1:LinkList,2:ImageSprite,2:SiteFeedbackLink;/Areas/Epx/Themes/Msdn/Content:0,/Areas/Epx/Themes/Base/Content:1,/Areas/Epx/Content/Css:2&amp;amp;hashKey=EEE39C2D6B93379FDAF50337BE99AF8C" xmlns="http://www.w3.org/1999/xhtml" />
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>AMP Introduction and Best Practices</title>
+        <link href="description/Galleries.css" type="text/css" rel="Stylesheet" /><link href="description/Layout.css" type="text/css" rel="Stylesheet" /><link href="description/Brand.css" type="text/css" rel="Stylesheet" />
+        <link href="description/iframedescription.css" rel="Stylesheet" type="text/css" />
+        <script src="description/offline.js" type="text/javascript"></script>
+        <style type="text/css">
+            #projectInfo {
+                overflow: auto;
+            }
+            #longDesc {
+                clear:both;
+                margin: 25px 0 10px 0;
+            }
+
+            #SampleIndexList{
+                margin-left: 15px;
+            }
+        </style>
+    </head>
+<body>
+    <div id="offlineDescription">
+        <h1>AMP Introduction and Best Practices</h1>
+        <br/>
+        <div id="projectInfo">
+            <div class="section">
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Technologies">Technologies</label>
+                        <div id="Technologies">
+                            DirectX, AMP
+                        </div>
+                    </div>
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Topics">Topics</label>
+                        <div id="Topics">
+                            AMP Fundamentals
+                        </div>
+                    </div>
+                <div class="itemBarLong">
+                    <label for="Platforms">Platforms</label>
+                    <div id="Platforms">
+                        Desktop
+                    </div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="Requirements">Requirements</label>
+                    <div id="Requirements">
+                        
+                    </div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Primary Language</label>
+                    <div id="LastUpdated">en-US</div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Last Updated</label>
+                    <div id="LastUpdated">10/24/2012</div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="License">License</label>
+                    <div id="License">
+                        <a href="license.rtf">Apache License, Version 2.0</a></div>
+                </div>
+                <div class="itemBar">
+                    <div class="viewonlinecont">
+                        <a data-link="online" href="http://code.msdn.microsoft.com/AMP-Introduction-and-Best-ea2628a6">View this sample online</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                   
+<script type="text/javascript">
+    function initializePage() {
+        var otherTabClass = 'otherTab';
+        var hiddenPreClass = 'hidden';
+
+        var htmlDecode = function(encodedData) {
+            var decodedData = "";
+            if (encodedData) {
+                var div = document.createElement('div');
+                div.innerHTML = encodedData;
+                decodedData = div.firstChild.nodeValue.replace( /\\r\\n/ig , '\r\n');
+            }
+            return decodedData;
+        };
+                
+        Galleries.iterateElem(Galleries.findElem(null, 'div', 'scriptcode'), function (index, scriptBlock) {
+            var titleElem = Galleries.findElem(scriptBlock, 'div', 'title')[0];
+            var labelElems = Galleries.findElem(titleElem, 'span');
+            if (labelElems.length == 0) {
+                labelElems = titleElem;
+            }
+            var languageSpans = Galleries.findElem(scriptBlock, 'span', 'hidden');
+            var pres = Galleries.findElem(scriptBlock, 'pre');
+            if (languageSpans.length > 0 && pres.length > 1) {
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    var languageSpan = languageSpans[index];
+                            
+                    elem.code = codePre.innerHTML.replace( /(\r(\n)?)|((\r)?\n)/ig , '\\r\\n');
+                            
+                    codePre.className = codePre.className.replace(hiddenPreClass, '');
+                            
+                    languageSpan.parentNode.removeChild(languageSpan);
+                });
+
+                pres = Galleries.findElem(scriptBlock, 'pre');
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    if (index == 0) {
+                        scriptBlock.activeTab = 0;
+                    }
+                    else {
+                        labelSpan.className += otherTabClass;
+                        codePre.className += hiddenPreClass;
+                    }
+                    Galleries.attachEventHandler(labelSpan, 'click', function(e) {
+                        var activeTab = scriptBlock.activeTab;
+                        labelElems[activeTab].className += otherTabClass;
+                        pres[activeTab].className += hiddenPreClass;
+
+                        codePre.className = codePre.className.replace(hiddenPreClass, '');
+                        labelSpan.className = labelSpan.className.replace(otherTabClass, '');
+                        scriptBlock.activeTab = index;
+                    });
+                });
+
+                var preview = Galleries.findElem(scriptBlock, 'div', 'preview');
+                if (preview.length == 0) {
+                    preview.push(pres[pres.length - 1]);
+                }
+                Galleries.iterateElem(preview, function(index, elem) {
+                    elem.parentNode.removeChild(elem);
+                });
+
+                if (window.clipboardData && clipboardData.setData) {
+                    var copyLink = document.createElement('a');
+                    copyLink.href = 'javascript:void(0);';
+                    copyLink.className = 'copyCode';
+                    copyLink.innerHTML = 'Copy Code';
+                    Galleries.attachEventHandler(copyLink, 'click', function (e) {
+                        clipboardData.setData("Text", htmlDecode(labelElems[scriptBlock.activeTab].code));
+                        return false;
+                    });
+                    scriptBlock.insertBefore(copyLink, scriptBlock.childNodes[0]);
+                }
+            }
+        });
+    }
+
+    Galleries.onWindowLoad(function(){
+        initializePage();
+    });
+
+</script>
+<div id="longDesc">
+    
+<h1>Introduction</h1>
+<div><span style="font-size:small">46 simple examples showing different C&#43;&#43; AMP applications and best practices, from device aquisition, to array and array_view, to exception handling, to correct performance measurement. All examples are sufficiently commented
+ but I will explain some of the concepts in this article as well.</span></div>
+<h1><span>Building the Sample</span></h1>
+<div><span style="font-size:small"><em>There are no special requirements. This is a Console application.</em></span></div>
+<div><span style="font-size:20px; font-weight:bold">Description</span></div>
+<div><span style="font-size:small">The first step in working with AMP is selecting the device on which you want to run your code. Ideally you want a device that supports DirectX 11 and is not dedicated to rendering to the display. If you noticed in the block
+ below, Has display is true. Ideally you want it to be false - it will be if you have a GPU which is not dedicated to rendering to the display. Here's an output of available accelerator properties on my machine. Please ensure you have updated GPU driver - I
+ had a problem with creating NVidia accelerator until I installed the latest driver.
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span style="color:#000000; font-size:x-small">i</span><span>C&#43;&#43;</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">cplusplus</span>
+<pre class="hidden">/*
+Accelerators and their properties.
+   -- Description:               NVIDIA Quadro 5000M
+      Device path:               PCI\VEN_10DE&amp;DEV_06DA&amp;SUBSYS_1520103C&amp;REV_A3\4&amp;ADCCE93&amp;0&amp;0018
+      Version:                   11.0
+      Dedicated memory:          2047424 KB
+      Supports double precision: true
+      Limited double precision:  true
+      Has display:               true
+      Is emulated:               false
+      Is debug:                  true
+*/</pre>
+<div class="preview">
+<pre class="cplusplus"><span class="cpp__mlcom">/*&nbsp;
+Accelerators&nbsp;and&nbsp;their&nbsp;properties.&nbsp;
+&nbsp;&nbsp;&nbsp;--&nbsp;Description:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NVIDIA&nbsp;Quadro&nbsp;5000M&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Device&nbsp;path:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PCI\VEN_10DE&amp;DEV_06DA&amp;SUBSYS_1520103C&amp;REV_A3\4&amp;ADCCE93&amp;0&amp;0018&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11.0&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dedicated&nbsp;memory:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2047424&nbsp;KB&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supports&nbsp;double&nbsp;precision:&nbsp;true&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Limited&nbsp;double&nbsp;precision:&nbsp;&nbsp;true&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Has&nbsp;display:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Is&nbsp;emulated:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Is&nbsp;debug:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true&nbsp;
+*/</span></pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">&nbsp;</div>
+Here's the code producing&nbsp;above output.&nbsp;It enumerates all available on my machine devices and prints properties of each one.
+</span></div>
+<div>&nbsp;</div>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C&#43;&#43;</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">cplusplus</span>
+<pre class="hidden">void AmpExamples::AcceleratorProperties()
+{
+	cout &lt;&lt; &quot;\nAccelerators and their properties.\n&quot;;
+
+	vector&lt;accelerator&gt; list = accelerator::get_all();
+
+	for_each(list.begin(), list.end(), [](const accelerator a) {
+		wcout &lt;&lt; &quot;   -- Description:               &quot; &lt;&lt; a.description &lt;&lt; endl;
+		wcout &lt;&lt; &quot;      Device path:               &quot; &lt;&lt; a.device_path &lt;&lt; endl;
+		wcout &lt;&lt; &quot;      Version:                   &quot; &lt;&lt; (a.version &gt;&gt; 16) &lt;&lt; '.' &lt;&lt; (a.version &amp; 0xFFFF) &lt;&lt; endl;
+		wcout &lt;&lt; &quot;      Dedicated memory:          &quot; &lt;&lt; a.dedicated_memory &lt;&lt; &quot; KB&quot; &lt;&lt; endl;
+		wcout &lt;&lt; &quot;      Supports double precision: &quot; &lt;&lt; ((a.supports_double_precision) ? &quot;true&quot; : &quot;false&quot;) &lt;&lt; endl;				// Note that full double precision is required by the concurrency::precise_math functions in &lt;amp_math.h&gt;
+		wcout &lt;&lt; &quot;      Limited double precision:  &quot; &lt;&lt; ((a.supports_limited_double_precision) ? &quot;true&quot; : &quot;false&quot;) &lt;&lt; endl;
+		wcout &lt;&lt; &quot;      Has display:               &quot; &lt;&lt; ((a.has_display) ? &quot;true&quot; : &quot;false&quot;) &lt;&lt; endl;
+		wcout &lt;&lt; &quot;      Is emulated:               &quot; &lt;&lt; ((a.is_emulated) ? &quot;true&quot; : &quot;false&quot;) &lt;&lt; endl;
+		wcout &lt;&lt; &quot;      Is debug:                  &quot; &lt;&lt; ((a.is_debug) ? &quot;true&quot; : &quot;false&quot;) &lt;&lt; endl;
+		wcout &lt;&lt; endl;
+	});
+
+#ifndef _DEBUG
+	// Requires ref accelerator for debugging on GPU!!!
+	bool r = PickAccelerator();
+#endif
+
+	// Now that we have a GPU accelerator, we can create views to other accelerators
+	accelerator_view warp = accelerator(accelerator::direct3d_warp).default_view;
+	wcout &lt;&lt; L&quot;\n   Aquired another accelerator: &quot; &lt;&lt; warp.accelerator.description &lt;&lt; endl;
+
+	// While default view is on the gpu
+	accelerator_view gpu = accelerator().default_view;
+	wcout &lt;&lt; L&quot;   Default view:                &quot; &lt;&lt; gpu.accelerator.description &lt;&lt; endl;
+}
+
+bool AmpExamples::PickAccelerator()
+{
+	bool success = false;
+
+	vector&lt;accelerator&gt; list = accelerator::get_all();
+
+	auto result = find_if(list.begin(), list.end(), [](const accelerator&amp; a) {
+		return	!a.is_emulated
+				&amp;&amp; a.supports_double_precision 
+				//&amp;&amp; !a.has_display
+				;
+	});
+
+	if (result != list.end())
+	{
+		accelerator gpu = *result;
+		success = accelerator::set_default(gpu.device_path);
+
+		if (success)
+		{
+			wcout &lt;&lt; &quot;\n   Accelerator for the process: &quot; &lt;&lt; gpu.description &lt;&lt; endl;
+			return true;
+		}
+	}
+
+	accelerator warp(L&quot;direct3d\\warp&quot;);
+	success = accelerator::set_default(warp.device_path);
+
+	wcout &lt;&lt; &quot;\n   Accelerator for the process: &quot; &lt;&lt; warp.description &lt;&lt; endl;	
+
+	return success;
+}
+</pre>
+<div class="preview">
+<pre class="cplusplus"><span class="cpp__keyword">void</span>&nbsp;AmpExamples::AcceleratorProperties()&nbsp;
+{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;<span class="cpp__string">&quot;\nAccelerators&nbsp;and&nbsp;their&nbsp;properties.\n&quot;</span>;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;vector&lt;accelerator&gt;&nbsp;list&nbsp;=&nbsp;accelerator::get_all();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;for_each(list.begin(),&nbsp;list.end(),&nbsp;[](<span class="cpp__keyword">const</span>&nbsp;accelerator&nbsp;a)&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="cpp__string">&quot;&nbsp;&nbsp;&nbsp;--&nbsp;Description:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;a.description&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="cpp__string">&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Device&nbsp;path:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;a.device_path&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="cpp__string">&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;(a.version&nbsp;&gt;&gt;&nbsp;<span class="cpp__number">16</span>)&nbsp;&lt;&lt;&nbsp;<span class="cpp__string">'.'</span>&nbsp;&lt;&lt;&nbsp;(a.version&nbsp;&amp;&nbsp;0xFFFF)&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="cpp__string">&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dedicated&nbsp;memory:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;a.dedicated_memory&nbsp;&lt;&lt;&nbsp;<span class="cpp__string">&quot;&nbsp;KB&quot;</span>&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="cpp__string">&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supports&nbsp;double&nbsp;precision:&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;((a.supports_double_precision)&nbsp;?&nbsp;<span class="cpp__string">&quot;true&quot;</span>&nbsp;:&nbsp;<span class="cpp__string">&quot;false&quot;</span>)&nbsp;&lt;&lt;&nbsp;endl;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cpp__com">//&nbsp;Note&nbsp;that&nbsp;full&nbsp;double&nbsp;precision&nbsp;is&nbsp;required&nbsp;by&nbsp;the&nbsp;concurrency::precise_math&nbsp;functions&nbsp;in&nbsp;&lt;amp_math.h&gt;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="cpp__string">&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Limited&nbsp;double&nbsp;precision:&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;((a.supports_limited_double_precision)&nbsp;?&nbsp;<span class="cpp__string">&quot;true&quot;</span>&nbsp;:&nbsp;<span class="cpp__string">&quot;false&quot;</span>)&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="cpp__string">&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Has&nbsp;display:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;((a.has_display)&nbsp;?&nbsp;<span class="cpp__string">&quot;true&quot;</span>&nbsp;:&nbsp;<span class="cpp__string">&quot;false&quot;</span>)&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="cpp__string">&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Is&nbsp;emulated:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;((a.is_emulated)&nbsp;?&nbsp;<span class="cpp__string">&quot;true&quot;</span>&nbsp;:&nbsp;<span class="cpp__string">&quot;false&quot;</span>)&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="cpp__string">&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Is&nbsp;debug:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;((a.is_debug)&nbsp;?&nbsp;<span class="cpp__string">&quot;true&quot;</span>&nbsp;:&nbsp;<span class="cpp__string">&quot;false&quot;</span>)&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;});<span class="cpp__preproc">&nbsp;
+&nbsp;
+#ifndef&nbsp;_DEBUG</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cpp__com">//&nbsp;Requires&nbsp;ref&nbsp;accelerator&nbsp;for&nbsp;debugging&nbsp;on&nbsp;GPU!!!</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cpp__datatype">bool</span>&nbsp;r&nbsp;=&nbsp;PickAccelerator();<span class="cpp__preproc">&nbsp;
+#endif</span>&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cpp__com">//&nbsp;Now&nbsp;that&nbsp;we&nbsp;have&nbsp;a&nbsp;GPU&nbsp;accelerator,&nbsp;we&nbsp;can&nbsp;create&nbsp;views&nbsp;to&nbsp;other&nbsp;accelerators</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;accelerator_view&nbsp;warp&nbsp;=&nbsp;accelerator(accelerator::direct3d_warp).default_view;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;L<span class="cpp__string">&quot;\n&nbsp;&nbsp;&nbsp;Aquired&nbsp;another&nbsp;accelerator:&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;warp.accelerator.description&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cpp__com">//&nbsp;While&nbsp;default&nbsp;view&nbsp;is&nbsp;on&nbsp;the&nbsp;gpu</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;accelerator_view&nbsp;gpu&nbsp;=&nbsp;accelerator().default_view;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;L<span class="cpp__string">&quot;&nbsp;&nbsp;&nbsp;Default&nbsp;view:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;gpu.accelerator.description&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+}&nbsp;
+&nbsp;
+<span class="cpp__datatype">bool</span>&nbsp;AmpExamples::PickAccelerator()&nbsp;
+{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cpp__datatype">bool</span>&nbsp;success&nbsp;=&nbsp;<span class="cpp__keyword">false</span>;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;vector&lt;accelerator&gt;&nbsp;list&nbsp;=&nbsp;accelerator::get_all();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;auto&nbsp;result&nbsp;=&nbsp;find_if(list.begin(),&nbsp;list.end(),&nbsp;[](<span class="cpp__keyword">const</span>&nbsp;accelerator&amp;&nbsp;a)&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cpp__keyword">return</span>&nbsp;&nbsp;&nbsp;&nbsp;!a.is_emulated&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp;&nbsp;a.supports_double_precision&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cpp__com">//&amp;&amp;&nbsp;!a.has_display</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cpp__keyword">if</span>&nbsp;(result&nbsp;!=&nbsp;list.end())&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;accelerator&nbsp;gpu&nbsp;=&nbsp;*result;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;success&nbsp;=&nbsp;accelerator::set_default(gpu.device_path);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cpp__keyword">if</span>&nbsp;(success)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="cpp__string">&quot;\n&nbsp;&nbsp;&nbsp;Accelerator&nbsp;for&nbsp;the&nbsp;process:&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;gpu.description&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cpp__keyword">return</span>&nbsp;<span class="cpp__keyword">true</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;accelerator&nbsp;warp(L<span class="cpp__string">&quot;direct3d\\warp&quot;</span>);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;success&nbsp;=&nbsp;accelerator::set_default(warp.device_path);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="cpp__string">&quot;\n&nbsp;&nbsp;&nbsp;Accelerator&nbsp;for&nbsp;the&nbsp;process:&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;warp.description&nbsp;&lt;&lt;&nbsp;endl;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cpp__keyword">return</span>&nbsp;success;&nbsp;
+<strong>}&nbsp;
+</strong></pre>
+</div>
+</div>
+</div>
+<div><span>If you are targeting a specific hardware, accelerator can be created directly by passing to accelerator constructor a system-wide unique path to a device if you know it (i.e. the &ldquo;Device Instance Path&rdquo; property for the device in Device
+ Manager), e.g. accelerator a(L&quot;PCI\VEN_10DE&amp;DEV_06DA&amp;SUBSYS_1520103C&amp;REV_A3\4&amp;ADCCE93&amp;0&amp;0018&quot;).</span></div>
+<div><span>&nbsp;</span></div>
+<div><span>It is important to note that in order to debug GPU code (to set breakpoints in AMP) you must run on ref device.
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span style="color:#000000">I</span><span>C&#43;&#43;</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">cplusplus</span>
+<pre class="hidden">/*
+   -- Description:               Software Adapter
+      Device path:               direct3d\ref
+      Version:                   11.1
+      Dedicated memory:          0 KB
+      Supports double precision: true
+      Limited double precision:  true
+      Has display:               true
+      Is emulated:               true
+      Is debug:                  true
+*/</pre>
+<div class="preview">
+<pre class="js"><span class="js__ml_comment">/*&nbsp;
+&nbsp;&nbsp;&nbsp;--&nbsp;Description:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software&nbsp;Adapter&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Device&nbsp;path:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;direct3d\ref&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11.1&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dedicated&nbsp;memory:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;KB&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supports&nbsp;double&nbsp;precision:&nbsp;true&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Limited&nbsp;double&nbsp;precision:&nbsp;&nbsp;true&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Has&nbsp;display:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Is&nbsp;emulated:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Is&nbsp;debug:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true&nbsp;
+*/</span></pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">Hence I&nbsp;wrapped device selection in</div>
+<div class="endscriptcode"></div>
+<div class="endscriptcode">
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C&#43;&#43;</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">cplusplus</span>
+<pre class="hidden">#ifndef _DEBUG
+	// Requires ref accelerator for debugging on GPU!!!
+	bool r = PickAccelerator();
+#endif
+
+</pre>
+<div class="preview">
+<pre class="js">#ifndef&nbsp;_DEBUG&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Requires&nbsp;ref&nbsp;accelerator&nbsp;<span class="js__statement">for</span>&nbsp;debugging&nbsp;on&nbsp;GPU!!!&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;bool&nbsp;r&nbsp;=&nbsp;PickAccelerator();&nbsp;
+#endif&nbsp;
+&nbsp;
+</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode"><span>You can also print messages from AMP code to output window - I have an example in the solution.</span></div>
+<div class="endscriptcode"><span>&nbsp;</span></div>
+<div class="endscriptcode"><span>accelerator_view is your device view on which your AMP code is executed. It is optional but you should specify it in your code explicitely.</span></div>
+</div>
+<div class="endscriptcode"></div>
+</span></div>
+<div><span>&nbsp;</span></div>
+<div><span>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C&#43;&#43;</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">cplusplus</span>
+<pre class="hidden">void AmpExamples::AcceleratorViewProperties()
+{
+	cout &lt;&lt; &quot;\nAccelerator Views and their properties.\n&quot;;
+
+	vector&lt;accelerator&gt; list = accelerator::get_all();
+
+	for_each(list.begin(), list.end(), [](accelerator a) {
+		accelerator_view av = a.create_view();
+
+		wcout &lt;&lt; &quot;   -- Description:               &quot; &lt;&lt; av.accelerator.description &lt;&lt; endl;
+		wcout &lt;&lt; &quot;      Version:                   &quot; &lt;&lt; (av.version &gt;&gt; 16) &lt;&lt; '.' &lt;&lt; (av.version &amp; 0xFFFF) &lt;&lt; endl;
+		wcout &lt;&lt; &quot;      Is debug:                  &quot; &lt;&lt; ((av.is_debug) ? &quot;true&quot; : &quot;false&quot;) &lt;&lt; endl;
+		wcout &lt;&lt; &quot;      Queing mode:               &quot; &lt;&lt; ((av.queuing_mode == queuing_mode::queuing_mode_automatic) ? &quot;automatic&quot; : &quot;immediate&quot;) &lt;&lt; endl;
+		wcout &lt;&lt; endl;
+	});
+}</pre>
+<div class="preview">
+<pre class="js"><span class="js__operator">void</span>&nbsp;AmpExamples::AcceleratorViewProperties()&nbsp;
+<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;\nAccelerator&nbsp;Views&nbsp;and&nbsp;their&nbsp;properties.\n&quot;</span>;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;vector&lt;accelerator&gt;&nbsp;list&nbsp;=&nbsp;accelerator::get_all();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;for_each(list.begin(),&nbsp;list.end(),&nbsp;[](accelerator&nbsp;a)&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;accelerator_view&nbsp;av&nbsp;=&nbsp;a.create_view();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;&nbsp;&nbsp;&nbsp;--&nbsp;Description:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;av.accelerator.description&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;(av.version&nbsp;&gt;&gt;&nbsp;<span class="js__num">16</span>)&nbsp;&lt;&lt;&nbsp;<span class="js__string">'.'</span>&nbsp;&lt;&lt;&nbsp;(av.version&nbsp;&amp;&nbsp;0xFFFF)&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Is&nbsp;debug:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;((av.is_debug)&nbsp;?&nbsp;<span class="js__string">&quot;true&quot;</span>&nbsp;:&nbsp;<span class="js__string">&quot;false&quot;</span>)&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Queing&nbsp;mode:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;((av.queuing_mode&nbsp;==&nbsp;queuing_mode::queuing_mode_automatic)&nbsp;?&nbsp;<span class="js__string">&quot;automatic&quot;</span>&nbsp;:&nbsp;<span class="js__string">&quot;immediate&quot;</span>)&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>);&nbsp;
+<span class="js__brace">}</span></pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">Following several examples demonstrate basic concepts of AMP. Please note that although I time execution of some of the code, the intention is just to get understanding of what AMP is doing under the hood and where it spends time.
+ You will notice that the first time AMP is accessed there is a long pause. It is because runtime is initializing AMP framework. In addition, each kernel (restrict amp) must be compiled causing initial performance penalty. The last two examples in the solution
+ show how to measure kernel code correctly. Before measuring performance the code executes a small warm-up routine to force JIT of the kernel.</div>
+<div class="endscriptcode">&nbsp;</div>
+<div class="endscriptcode">But let's get back to basics. Most of the time you will be working with array_view, which is a pointer to the underlying data. array data type is used mostly when you want to measure performance, interop with DirectX, or store some
+ data. AMP will automatically handle transferring data between the host and the device when you use array_view.</div>
+<div class="endscriptcode">&nbsp;</div>
+<div class="endscriptcode">You can call functions from within the kernel. In that case function must be amp restricted.</div>
+<div class="endscriptcode">&nbsp;</div>
+<div class="endscriptcode">
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C&#43;&#43;</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">cplusplus</span>
+<pre class="hidden">void AmpExamples::AddElementsInternal(
+	index&lt;1&gt;						idx, 
+	array_view&lt;int, 1&gt;				sum, 
+	const array_view&lt;const int, 1&gt;	a, 
+	const array_view&lt;const int, 1&gt;	b
+	) restrict(amp)
+{
+	sum[idx] = a[idx] &#43; b[idx];
+}
+</pre>
+<div class="preview">
+<pre class="cplusplus"><span class="cpp__keyword">void</span>&nbsp;AmpExamples::AddElementsInternal(&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;index&lt;<span class="cpp__number">1</span>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;idx,&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;array_view&lt;<span class="cpp__datatype">int</span>,&nbsp;<span class="cpp__number">1</span>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum,&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cpp__keyword">const</span>&nbsp;array_view&lt;<span class="cpp__keyword">const</span>&nbsp;<span class="cpp__datatype">int</span>,&nbsp;<span class="cpp__number">1</span>&gt;&nbsp;&nbsp;&nbsp;&nbsp;a,&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cpp__keyword">const</span>&nbsp;array_view&lt;<span class="cpp__keyword">const</span>&nbsp;<span class="cpp__datatype">int</span>,&nbsp;<span class="cpp__number">1</span>&gt;&nbsp;&nbsp;&nbsp;&nbsp;b&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;restrict(amp)&nbsp;
+{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;sum[idx]&nbsp;=&nbsp;a[idx]&nbsp;&#43;&nbsp;b[idx];&nbsp;
+}&nbsp;
+</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">&nbsp;</div>
+Several examples starting with ArrayViewOps show what should not be done in amp. Compiler will not allow you to remove const, for example, but in some cases you can run into trouble with pointers.</div>
+<div class="endscriptcode">&nbsp;</div>
+<div class="endscriptcode">
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C&#43;&#43;</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">cplusplus</span>
+<pre class="hidden">void AmpExamples::PointerRestrictions()
+{
+	int p[] = { 1, 2, 3, 4, 5 };
+	const int size = ARRAYSIZE(p);
+
+	array_view&lt;int, 1&gt; a(size, p);
+
+	parallel_for_each(a.extent, [=](index&lt;1&gt; idx) restrict(amp)
+		{
+			struct A
+			{
+				bool flag;
+				int  data;
+			};
+
+			A a;
+
+			bool* p1 = &amp;(a.flag);
+			//bool* p2 = p1&#43;&#43;;				// error C3599: '&#43;&#43;' : cannot perform pointer arithmetic on pointer to bool in amp restricted code
+
+			//bool b = *(p2);
+
+			// Compiler Error:
+			// base class, data member or array element must be at least 4-byte aligned for amp-restricted function 
+			//
+			/*
+			struct B
+			{
+				bool flag;
+				bool data;
+			};
+
+			B b;
+			*/
+
+			// Solution to B is to allign the struct
+			struct C
+			{
+				bool flag;
+				__declspec(align(4)) bool data;			// Note that the alignment is only applied to the field
+			};
+
+			C c;
+
+			// To align a structure
+			typedef __declspec(align(4)) 
+			struct D 
+			{
+				bool flag;
+			} 
+			ALIGNED_BOOL;
+
+			ALIGNED_BOOL d[10];							// Now we can create an array of aligned fields
+		}
+	);
+}
+</pre>
+<div class="preview">
+<pre class="js"><span class="js__operator">void</span>&nbsp;AmpExamples::PointerRestrictions()&nbsp;
+<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;p[]&nbsp;=&nbsp;<span class="js__brace">{</span>&nbsp;<span class="js__num">1</span>,&nbsp;<span class="js__num">2</span>,&nbsp;<span class="js__num">3</span>,&nbsp;<span class="js__num">4</span>,&nbsp;<span class="js__num">5</span>&nbsp;<span class="js__brace">}</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">const</span>&nbsp;int&nbsp;size&nbsp;=&nbsp;ARRAYSIZE(p);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;array_view&lt;int,&nbsp;<span class="js__num">1</span>&gt;&nbsp;a(size,&nbsp;p);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;parallel_for_each(a.extent,&nbsp;[=](index&lt;<span class="js__num">1</span>&gt;&nbsp;idx)&nbsp;restrict(amp)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;A&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool&nbsp;flag;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;&nbsp;data;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;a;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool*&nbsp;p1&nbsp;=&nbsp;&amp;(a.flag);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//bool*&nbsp;p2&nbsp;=&nbsp;p1&#43;&#43;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;error&nbsp;C3599:&nbsp;'&#43;&#43;'&nbsp;:&nbsp;cannot&nbsp;perform&nbsp;pointer&nbsp;arithmetic&nbsp;on&nbsp;pointer&nbsp;to&nbsp;bool&nbsp;in&nbsp;amp&nbsp;restricted&nbsp;code</span>&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//bool&nbsp;b&nbsp;=&nbsp;*(p2);</span>&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;Compiler&nbsp;Error:</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;base&nbsp;class,&nbsp;data&nbsp;member&nbsp;or&nbsp;array&nbsp;element&nbsp;must&nbsp;be&nbsp;at&nbsp;least&nbsp;4-byte&nbsp;aligned&nbsp;for&nbsp;amp-restricted&nbsp;function&nbsp;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__ml_comment">/*&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;B&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool&nbsp;flag;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool&nbsp;data;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B&nbsp;b;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span>&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;Solution&nbsp;to&nbsp;B&nbsp;is&nbsp;to&nbsp;allign&nbsp;the&nbsp;struct</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;C&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool&nbsp;flag;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__declspec(align(<span class="js__num">4</span>))&nbsp;bool&nbsp;data;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;Note&nbsp;that&nbsp;the&nbsp;alignment&nbsp;is&nbsp;only&nbsp;applied&nbsp;to&nbsp;the&nbsp;field</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C&nbsp;c;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;To&nbsp;align&nbsp;a&nbsp;structure</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typedef&nbsp;__declspec(align(<span class="js__num">4</span>))&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;D&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool&nbsp;flag;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALIGNED_BOOL;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALIGNED_BOOL&nbsp;d[<span class="js__num">10</span>];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;Now&nbsp;we&nbsp;can&nbsp;create&nbsp;an&nbsp;array&nbsp;of&nbsp;aligned&nbsp;fields</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;);&nbsp;
+<span class="js__brace">}</span>&nbsp;
+</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">Please note that your kernel code must execute fast. On most hardware the limit is 2 seconds. On my machine it is 7 seconds. You can see the value using the following powershell script:</div>
+<div class="endscriptcode">&nbsp;</div>
+<div class="endscriptcode">
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C&#43;&#43;</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">cplusplus</span>
+<pre class="hidden">/*
+PS HKLM:\&gt; dir
+
+    Hive: HKEY_LOCAL_MACHINE
+
+Name                           Property                                                                                                                                                 
+----                           --------                                                                                                                                                 
+BCD00000000                                                                                                                                                                             
+HARDWARE                                                                                                                                                                                
+SAM                                                                                                                                                                                     
+dir : Requested registry access is not allowed.
+At line:1 char:1
+&#43; dir
+&#43; ~~~
+    &#43; CategoryInfo          : PermissionDenied: (HKEY_LOCAL_MACHINE\SECURITY:String) [Get-ChildItem], SecurityException
+    &#43; FullyQualifiedErrorId : <a class="libraryLink" href="http://msdn.microsoft.com/en-US/library/System.Security.SecurityException.aspx"  title="Auto generated link to System.Security.SecurityException">System.Security.SecurityException</a>,<a class="libraryLink" href="http://msdn.microsoft.com/en-US/library/Microsoft.PowerShell.Commands.GetChildItemCommand.aspx"  title="Auto generated link to Microsoft.PowerShell.Commands.GetChildItemCommand">Microsoft.PowerShell.Commands.GetChildItemCommand</a>
+ 
+SOFTWARE                                                                                                                                                                                
+SYSTEM                                                                                                                                                                                  
+
+PS HKLM:\&gt; cd System\CurrentControlSet\Control\GraphicsDrivers
+
+PS HKLM:\System\CurrentControlSet\Control\GraphicsDrivers&gt; dir
+
+    Hive: HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\GraphicsDrivers
+
+Name                           Property                                                                                                                                                 
+----                           --------                                                                                                                                                 
+AdditionalModeLists                                                                                                                                                                     
+Configuration                                                                                                                                                                           
+Connectivity                                                                                                                                                                            
+DCI                            Timeout : 7                                                                                                                                              
+UseNewKey                                         
+*/
+</pre>
+<div class="preview">
+<pre class="js"><span class="js__ml_comment">/*&nbsp;
+PS&nbsp;HKLM:\&gt;&nbsp;dir&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;Hive:&nbsp;HKEY_LOCAL_MACHINE&nbsp;
+&nbsp;
+Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Property&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+----&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+BCD00000000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+HARDWARE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+SAM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+dir&nbsp;:&nbsp;Requested&nbsp;registry&nbsp;access&nbsp;is&nbsp;not&nbsp;allowed.&nbsp;
+At&nbsp;line:1&nbsp;char:1&nbsp;
+&#43;&nbsp;dir&nbsp;
+&#43;&nbsp;~~~&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&#43;&nbsp;CategoryInfo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;PermissionDenied:&nbsp;(HKEY_LOCAL_MACHINE\SECURITY:String)&nbsp;[Get-ChildItem],&nbsp;SecurityException&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&#43;&nbsp;FullyQualifiedErrorId&nbsp;:&nbsp;<a class="libraryLink" href="http://msdn.microsoft.com/en-US/library/System.Security.SecurityException.aspx"  title="Auto generated link to System.Security.SecurityException">System.Security.SecurityException</a>,Microsoft.PowerShell.Commands.GetChildItemCommand&nbsp;
+&nbsp;&nbsp;
+SOFTWARE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+SYSTEM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+PS&nbsp;HKLM:\&gt;&nbsp;cd&nbsp;System\CurrentControlSet\Control\GraphicsDrivers&nbsp;
+&nbsp;
+PS&nbsp;HKLM:\System\CurrentControlSet\Control\GraphicsDrivers&gt;&nbsp;dir&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;Hive:&nbsp;HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\GraphicsDrivers&nbsp;
+&nbsp;
+Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Property&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+----&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+AdditionalModeLists&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Configuration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Connectivity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+DCI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Timeout&nbsp;:&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UseNewKey&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+*/</span>&nbsp;
+</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">This behavior is controlled by Windows. If you have a GPU which is not dedicated to rendering, you can disable Timout Detection and Recovery by creating device from DirectX 11 ID3D11Device. You must specify
+<span style="color:#2f4f4f; font-family:Consolas; font-size:x-small"><span style="color:#2f4f4f; font-family:Consolas; font-size:x-small"><span style="color:#2f4f4f; font-family:Consolas; font-size:x-small">D3D11_CREATE_DEVICE_DISABLE_GPU_TIMEOUT
+</span></span></span>flag which you will pass to teh CreateDevice function in order to do that.</div>
+</div>
+<div class="endscriptcode">&nbsp;</div>
+</div>
+<div class="endscriptcode">
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C&#43;&#43;</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">cplusplus</span>
+<pre class="hidden">void AmpExamples::DisableTDR()
+{
+	cout &lt;&lt; &quot;\nDisable TDR.\n&quot;;
+
+	unsigned int flags = D3D11_CREATE_DEVICE_DISABLE_GPU_TIMEOUT;			// DISABLE TDR!!!
+	
+#if _DEBUG
+	flags |= D3D11_CREATE_DEVICE_DEBUG;
+#endif
+
+	ID3D11Device*			device  = nullptr;
+	ID3D11DeviceContext*	context = nullptr;
+
+	D3D_DRIVER_TYPE driverTypes[] = 
+	{
+		D3D_DRIVER_TYPE_HARDWARE,
+		D3D_DRIVER_TYPE_WARP,
+		D3D_DRIVER_TYPE_REFERENCE
+	};
+
+	D3D_FEATURE_LEVEL featureLevels[] =
+	{
+		D3D_FEATURE_LEVEL_11_0,
+		D3D_FEATURE_LEVEL_10_1,
+		D3D_FEATURE_LEVEL_10_0
+	};
+
+	D3D_FEATURE_LEVEL		feature;
+
+	// http://msdn.microsoft.com/en-us/library/windows/desktop/ff476877(v=vs.85).aspx
+	//IDXGIAdapter* adapter = nullptr;
+
+	HRESULT hr = S_OK;
+
+	for (UINT i = 0; i &lt; ARRAYSIZE(driverTypes); &#43;&#43;i)
+	{
+		D3D_DRIVER_TYPE driverType = driverTypes[i];
+
+		hr = D3D11CreateDevice(
+			nullptr,						// dxgi adapter
+			driverType,						// driver type
+			nullptr,						// software rasterizer
+			flags,							// flags
+			featureLevels,					// feture levels
+			ARRAYSIZE(featureLevels),		// feature levels
+			D3D11_SDK_VERSION,				// sdk version
+			&amp;device,
+			&amp;feature,
+			&amp;context
+			);
+
+		if (SUCCEEDED(hr))
+		{
+			break;
+		}
+	}
+
+	if (FAILED(hr) || 
+		((feature != D3D_FEATURE_LEVEL_11_1) &amp;&amp; (feature != D3D_FEATURE_LEVEL_11_0))
+		)
+	{
+		cerr &lt;&lt; &quot;   Failed to create Direct3D 11 device.&quot; &lt;&lt; endl;
+		return;
+	}
+
+	// This accelerator_view will not time-out
+	accelerator_view av = create_accelerator_view(device);
+
+	wcout &lt;&lt; &quot;   -- Description:               &quot; &lt;&lt; av.accelerator.description &lt;&lt; endl;
+	wcout &lt;&lt; &quot;      Version:                   &quot; &lt;&lt; (av.version &gt;&gt; 16) &lt;&lt; '.' &lt;&lt; (av.version &amp; 0xFFFF) &lt;&lt; endl;
+	wcout &lt;&lt; &quot;      Is debug:                  &quot; &lt;&lt; ((av.is_debug) ? &quot;true&quot; : &quot;false&quot;) &lt;&lt; endl;
+	wcout &lt;&lt; &quot;      Queing mode:               &quot; &lt;&lt; ((av.queuing_mode == queuing_mode::queuing_mode_automatic) ? &quot;automatic&quot; : &quot;immediate&quot;) &lt;&lt; endl;
+	wcout &lt;&lt; endl;
+}
+</pre>
+<div class="preview">
+<pre class="js"><span class="js__operator">void</span>&nbsp;AmpExamples::DisableTDR()&nbsp;
+<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;\nDisable&nbsp;TDR.\n&quot;</span>;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;unsigned&nbsp;int&nbsp;flags&nbsp;=&nbsp;D3D11_CREATE_DEVICE_DISABLE_GPU_TIMEOUT;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;DISABLE&nbsp;TDR!!!</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+#<span class="js__statement">if</span>&nbsp;_DEBUG&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;flags&nbsp;|=&nbsp;D3D11_CREATE_DEVICE_DEBUG;&nbsp;
+#endif&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;ID3D11Device*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device&nbsp;&nbsp;=&nbsp;nullptr;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;ID3D11DeviceContext*&nbsp;&nbsp;&nbsp;&nbsp;context&nbsp;=&nbsp;nullptr;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;D3D_DRIVER_TYPE&nbsp;driverTypes[]&nbsp;=&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D3D_DRIVER_TYPE_HARDWARE,&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D3D_DRIVER_TYPE_WARP,&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D3D_DRIVER_TYPE_REFERENCE&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;D3D_FEATURE_LEVEL&nbsp;featureLevels[]&nbsp;=&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D3D_FEATURE_LEVEL_11_0,&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D3D_FEATURE_LEVEL_10_1,&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D3D_FEATURE_LEVEL_10_0&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;D3D_FEATURE_LEVEL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;feature;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;http://msdn.microsoft.com/en-us/library/windows/desktop/ff476877(v=vs.85).aspx</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//IDXGIAdapter*&nbsp;adapter&nbsp;=&nbsp;nullptr;</span>&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;HRESULT&nbsp;hr&nbsp;=&nbsp;S_OK;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">for</span>&nbsp;(UINT&nbsp;i&nbsp;=&nbsp;<span class="js__num">0</span>;&nbsp;i&nbsp;&lt;&nbsp;ARRAYSIZE(driverTypes);&nbsp;&#43;&#43;i)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D3D_DRIVER_TYPE&nbsp;driverType&nbsp;=&nbsp;driverTypes[i];&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hr&nbsp;=&nbsp;D3D11CreateDevice(&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nullptr,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;dxgi&nbsp;adapter</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;driverType,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;driver&nbsp;type</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nullptr,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;software&nbsp;rasterizer</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flags,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;flags</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;featureLevels,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;feture&nbsp;levels</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ARRAYSIZE(featureLevels),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;feature&nbsp;levels</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D3D11_SDK_VERSION,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;sdk&nbsp;version</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;device,&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;feature,&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;context&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">if</span>&nbsp;(SUCCEEDED(hr))&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">break</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">if</span>&nbsp;(FAILED(hr)&nbsp;||&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((feature&nbsp;!=&nbsp;D3D_FEATURE_LEVEL_11_1)&nbsp;&amp;&amp;&nbsp;(feature&nbsp;!=&nbsp;D3D_FEATURE_LEVEL_11_0))&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cerr&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;&nbsp;&nbsp;&nbsp;Failed&nbsp;to&nbsp;create&nbsp;Direct3D&nbsp;11&nbsp;device.&quot;</span>&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">return</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;This&nbsp;accelerator_view&nbsp;will&nbsp;not&nbsp;time-out</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;accelerator_view&nbsp;av&nbsp;=&nbsp;create_accelerator_view(device);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;&nbsp;&nbsp;&nbsp;--&nbsp;Description:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;av.accelerator.description&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;(av.version&nbsp;&gt;&gt;&nbsp;<span class="js__num">16</span>)&nbsp;&lt;&lt;&nbsp;<span class="js__string">'.'</span>&nbsp;&lt;&lt;&nbsp;(av.version&nbsp;&amp;&nbsp;0xFFFF)&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Is&nbsp;debug:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;((av.is_debug)&nbsp;?&nbsp;<span class="js__string">&quot;true&quot;</span>&nbsp;:&nbsp;<span class="js__string">&quot;false&quot;</span>)&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Queing&nbsp;mode:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;((av.queuing_mode&nbsp;==&nbsp;queuing_mode::queuing_mode_automatic)&nbsp;?&nbsp;<span class="js__string">&quot;automatic&quot;</span>&nbsp;:&nbsp;<span class="js__string">&quot;immediate&quot;</span>)&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+<span class="js__brace">}</span>&nbsp;
+</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">I have already mentioned that you can output information from the amp kernel to the debug output window. You do this using direct3d_printf function. Example follows:</div>
+</div>
+<div class="endscriptcode"></div>
+<div class="endscriptcode">
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C&#43;&#43;</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">cplusplus</span>
+<pre class="hidden">// void direct3d_abort() restrict(amp)
+// This function aborts the execution of a kernel. When the abort is detected by the runtime, 
+// it raises a runtime_exception on the host with the error message, &ldquo;Reference Rasterizer: Shader abort instruction hit&rdquo;.
+//
+// D3D11 MESSAGE: Reference Rasterizer:    view[0,0] = 2 [ SHADER MESSAGE #2097410: SHADER_MESSAGE]
+// D3D11 MESSAGE: Reference Rasterizer:    view[0,1] = 3 [ SHADER MESSAGE #2097410: SHADER_MESSAGE]
+// D3D11 MESSAGE: Reference Rasterizer:    view[1,0] = 4 [ SHADER MESSAGE #2097410: SHADER_MESSAGE]
+// D3D11 MESSAGE: Reference Rasterizer:    view[1,1] = 5 [ SHADER MESSAGE #2097410: SHADER_MESSAGE]
+//
+//
+// void direct3d_printf(const char *_Format_string, &hellip;) restrict(amp)
+// (Parameters)_Format_string: The format string; ...: An optional list of parameters of variable count.
+// This function accepts a format string and an optional list of parameters of variable count. 
+// It prints formatted output from a kernel to the Visual Studio output window.
+//
+// D3D11 ERROR: Reference Rasterizer:    errorf: av[idx] = 2 [ SHADER ERROR #2097411: SHADER_ERROR]
+// D3D11 ERROR: Reference Rasterizer:    errorf: av[idx] = 3 [ SHADER ERROR #2097411: SHADER_ERROR]
+// D3D11 ERROR: Reference Rasterizer:    errorf: av[idx] = 4 [ SHADER ERROR #2097411: SHADER_ERROR]
+// D3D11 ERROR: Reference Rasterizer:    errorf: av[idx] = 5 [ SHADER ERROR #2097411: SHADER_ERROR]
+//
+//
+// void direct3d_errorf(char *_Format_string, &hellip;) restrict(amp)
+// This function has identical characteristics and usage to the direct3d_printf function, 
+// in that a message is printed to the output window. Additionally the C&#43;&#43; AMP runtime 
+// will raise a runtime_exception on the host with the same error message passed to the direct3d_errof call.
+//
+// D3D11 ERROR: Reference Rasterizer: Shader abort instruction hit at IP 462 [ EXECUTION ERROR #2097409: SHADER_ABORT]
+// D3D11 ERROR: Reference Rasterizer: Shader abort instruction hit at IP 462 [ EXECUTION ERROR #2097409: SHADER_ABORT]
+// D3D11 ERROR: Reference Rasterizer: Shader abort instruction hit at IP 462 [ EXECUTION ERROR #2097409: SHADER_ABORT]
+// D3D11 ERROR: Reference Rasterizer: Shader abort instruction hit at IP 462 [ EXECUTION ERROR #2097409: SHADER_ABORT]
+// //
+void AmpExamples::DebugHelpers()
+{
+	cout &lt;&lt; &quot;\nDebugging Support in AMP.\n&quot;;
+
+	const int width = 2;
+	const int height = 2;
+	const int size = width * height;
+
+	vector&lt;int&gt; data(size);
+
+	int i = 0;
+	generate(data.begin(), data.end(), [&amp;i]{ return &#43;&#43;i; });
+
+	// In DEBUG mode with GPU ony selected, av will be ref!
+	// In other build configurations, these helpers will be replaced with NOOP.
+	//accelerator_view av = accelerator().create_view();
+	accelerator_view av = accelerator(accelerator::direct3d_ref).default_view;
+
+	wcout &lt;&lt; L&quot;\n   device: &quot; &lt;&lt; av.get_accelerator().description &lt;&lt; endl;
+
+	concurrency::extent&lt;2&gt; ext(width, height);
+	array_view&lt;int, 2&gt; view(ext, data);
+
+	// printf
+	parallel_for_each(av, ext, [=](index&lt;2&gt; idx) restrict(amp) {
+		view[idx]&#43;&#43;;
+		direct3d_printf(&quot;   view[%d,%d] = %d\n&quot;, idx[0], idx[1], view[idx]);				// Limit is 7 parameters, will throw exception in RELEASE
+	});
+
+	view.synchronize();
+
+	// errorf
+	try
+	{
+		parallel_for_each(av, ext, [=](index&lt;2&gt; idx) restrict(amp) {
+			direct3d_errorf(&quot;   errorf: av[idx] = %d\n&quot;, view[idx]);
+			view[idx] *= 10;
+		});
+
+		view.synchronize();
+	}
+	catch(runtime_exception&amp; e)
+	{
+		cout &lt;&lt; &quot;\n   errorf caused runtime exception: &quot; &lt;&lt; e.what() &lt;&lt; endl;
+	}
+
+	// abort
+	try
+	{
+		parallel_for_each(av, ext, [=](index&lt;2&gt; idx) restrict(amp) {
+			view[idx] *= 10;
+			direct3d_abort();							// This will terminate the program when debugging in GPU only mode
+		});
+
+		view.synchronize();
+	}
+	catch(runtime_exception&amp; e)
+	{
+		cout &lt;&lt; &quot;\n   aborted: &quot; &lt;&lt; e.what() &lt;&lt; endl;
+	}
+}
+</pre>
+<div class="preview">
+<pre class="js"><span class="js__sl_comment">//&nbsp;void&nbsp;direct3d_abort()&nbsp;restrict(amp)</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;This&nbsp;function&nbsp;aborts&nbsp;the&nbsp;execution&nbsp;of&nbsp;a&nbsp;kernel.&nbsp;When&nbsp;the&nbsp;abort&nbsp;is&nbsp;detected&nbsp;by&nbsp;the&nbsp;runtime,&nbsp;</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;it&nbsp;raises&nbsp;a&nbsp;runtime_exception&nbsp;on&nbsp;the&nbsp;host&nbsp;with&nbsp;the&nbsp;error&nbsp;message,&nbsp;&ldquo;Reference&nbsp;Rasterizer:&nbsp;Shader&nbsp;abort&nbsp;instruction&nbsp;hit&rdquo;.</span>&nbsp;
+<span class="js__sl_comment">//</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;D3D11&nbsp;MESSAGE:&nbsp;Reference&nbsp;Rasterizer:&nbsp;&nbsp;&nbsp;&nbsp;view[0,0]&nbsp;=&nbsp;2&nbsp;[&nbsp;SHADER&nbsp;MESSAGE&nbsp;#2097410:&nbsp;SHADER_MESSAGE]</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;D3D11&nbsp;MESSAGE:&nbsp;Reference&nbsp;Rasterizer:&nbsp;&nbsp;&nbsp;&nbsp;view[0,1]&nbsp;=&nbsp;3&nbsp;[&nbsp;SHADER&nbsp;MESSAGE&nbsp;#2097410:&nbsp;SHADER_MESSAGE]</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;D3D11&nbsp;MESSAGE:&nbsp;Reference&nbsp;Rasterizer:&nbsp;&nbsp;&nbsp;&nbsp;view[1,0]&nbsp;=&nbsp;4&nbsp;[&nbsp;SHADER&nbsp;MESSAGE&nbsp;#2097410:&nbsp;SHADER_MESSAGE]</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;D3D11&nbsp;MESSAGE:&nbsp;Reference&nbsp;Rasterizer:&nbsp;&nbsp;&nbsp;&nbsp;view[1,1]&nbsp;=&nbsp;5&nbsp;[&nbsp;SHADER&nbsp;MESSAGE&nbsp;#2097410:&nbsp;SHADER_MESSAGE]</span>&nbsp;
+<span class="js__sl_comment">//</span>&nbsp;
+<span class="js__sl_comment">//</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;void&nbsp;direct3d_printf(const&nbsp;char&nbsp;*_Format_string,&nbsp;&hellip;)&nbsp;restrict(amp)</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;(Parameters)_Format_string:&nbsp;The&nbsp;format&nbsp;string;&nbsp;...:&nbsp;An&nbsp;optional&nbsp;list&nbsp;of&nbsp;parameters&nbsp;of&nbsp;variable&nbsp;count.</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;This&nbsp;function&nbsp;accepts&nbsp;a&nbsp;format&nbsp;string&nbsp;and&nbsp;an&nbsp;optional&nbsp;list&nbsp;of&nbsp;parameters&nbsp;of&nbsp;variable&nbsp;count.&nbsp;</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;It&nbsp;prints&nbsp;formatted&nbsp;output&nbsp;from&nbsp;a&nbsp;kernel&nbsp;to&nbsp;the&nbsp;Visual&nbsp;Studio&nbsp;output&nbsp;window.</span>&nbsp;
+<span class="js__sl_comment">//</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;D3D11&nbsp;ERROR:&nbsp;Reference&nbsp;Rasterizer:&nbsp;&nbsp;&nbsp;&nbsp;errorf:&nbsp;av[idx]&nbsp;=&nbsp;2&nbsp;[&nbsp;SHADER&nbsp;ERROR&nbsp;#2097411:&nbsp;SHADER_ERROR]</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;D3D11&nbsp;ERROR:&nbsp;Reference&nbsp;Rasterizer:&nbsp;&nbsp;&nbsp;&nbsp;errorf:&nbsp;av[idx]&nbsp;=&nbsp;3&nbsp;[&nbsp;SHADER&nbsp;ERROR&nbsp;#2097411:&nbsp;SHADER_ERROR]</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;D3D11&nbsp;ERROR:&nbsp;Reference&nbsp;Rasterizer:&nbsp;&nbsp;&nbsp;&nbsp;errorf:&nbsp;av[idx]&nbsp;=&nbsp;4&nbsp;[&nbsp;SHADER&nbsp;ERROR&nbsp;#2097411:&nbsp;SHADER_ERROR]</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;D3D11&nbsp;ERROR:&nbsp;Reference&nbsp;Rasterizer:&nbsp;&nbsp;&nbsp;&nbsp;errorf:&nbsp;av[idx]&nbsp;=&nbsp;5&nbsp;[&nbsp;SHADER&nbsp;ERROR&nbsp;#2097411:&nbsp;SHADER_ERROR]</span>&nbsp;
+<span class="js__sl_comment">//</span>&nbsp;
+<span class="js__sl_comment">//</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;void&nbsp;direct3d_errorf(char&nbsp;*_Format_string,&nbsp;&hellip;)&nbsp;restrict(amp)</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;This&nbsp;function&nbsp;has&nbsp;identical&nbsp;characteristics&nbsp;and&nbsp;usage&nbsp;to&nbsp;the&nbsp;direct3d_printf&nbsp;function,&nbsp;</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;in&nbsp;that&nbsp;a&nbsp;message&nbsp;is&nbsp;printed&nbsp;to&nbsp;the&nbsp;output&nbsp;window.&nbsp;Additionally&nbsp;the&nbsp;C&#43;&#43;&nbsp;AMP&nbsp;runtime&nbsp;</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;will&nbsp;raise&nbsp;a&nbsp;runtime_exception&nbsp;on&nbsp;the&nbsp;host&nbsp;with&nbsp;the&nbsp;same&nbsp;error&nbsp;message&nbsp;passed&nbsp;to&nbsp;the&nbsp;direct3d_errof&nbsp;call.</span>&nbsp;
+<span class="js__sl_comment">//</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;D3D11&nbsp;ERROR:&nbsp;Reference&nbsp;Rasterizer:&nbsp;Shader&nbsp;abort&nbsp;instruction&nbsp;hit&nbsp;at&nbsp;IP&nbsp;462&nbsp;[&nbsp;EXECUTION&nbsp;ERROR&nbsp;#2097409:&nbsp;SHADER_ABORT]</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;D3D11&nbsp;ERROR:&nbsp;Reference&nbsp;Rasterizer:&nbsp;Shader&nbsp;abort&nbsp;instruction&nbsp;hit&nbsp;at&nbsp;IP&nbsp;462&nbsp;[&nbsp;EXECUTION&nbsp;ERROR&nbsp;#2097409:&nbsp;SHADER_ABORT]</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;D3D11&nbsp;ERROR:&nbsp;Reference&nbsp;Rasterizer:&nbsp;Shader&nbsp;abort&nbsp;instruction&nbsp;hit&nbsp;at&nbsp;IP&nbsp;462&nbsp;[&nbsp;EXECUTION&nbsp;ERROR&nbsp;#2097409:&nbsp;SHADER_ABORT]</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;D3D11&nbsp;ERROR:&nbsp;Reference&nbsp;Rasterizer:&nbsp;Shader&nbsp;abort&nbsp;instruction&nbsp;hit&nbsp;at&nbsp;IP&nbsp;462&nbsp;[&nbsp;EXECUTION&nbsp;ERROR&nbsp;#2097409:&nbsp;SHADER_ABORT]</span>&nbsp;
+<span class="js__sl_comment">//&nbsp;//</span>&nbsp;
+<span class="js__operator">void</span>&nbsp;AmpExamples::DebugHelpers()&nbsp;
+<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;\nDebugging&nbsp;Support&nbsp;in&nbsp;AMP.\n&quot;</span>;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">const</span>&nbsp;int&nbsp;width&nbsp;=&nbsp;<span class="js__num">2</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">const</span>&nbsp;int&nbsp;height&nbsp;=&nbsp;<span class="js__num">2</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">const</span>&nbsp;int&nbsp;size&nbsp;=&nbsp;width&nbsp;*&nbsp;height;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;vector&lt;int&gt;&nbsp;data(size);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;i&nbsp;=&nbsp;<span class="js__num">0</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;generate(data.begin(),&nbsp;data.end(),&nbsp;[&amp;i]<span class="js__brace">{</span>&nbsp;<span class="js__statement">return</span>&nbsp;&#43;&#43;i;&nbsp;<span class="js__brace">}</span>);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;In&nbsp;DEBUG&nbsp;mode&nbsp;with&nbsp;GPU&nbsp;ony&nbsp;selected,&nbsp;av&nbsp;will&nbsp;be&nbsp;ref!</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;In&nbsp;other&nbsp;build&nbsp;configurations,&nbsp;these&nbsp;helpers&nbsp;will&nbsp;be&nbsp;replaced&nbsp;with&nbsp;NOOP.</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//accelerator_view&nbsp;av&nbsp;=&nbsp;accelerator().create_view();</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;accelerator_view&nbsp;av&nbsp;=&nbsp;accelerator(accelerator::direct3d_ref).default_view;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;L<span class="js__string">&quot;\n&nbsp;&nbsp;&nbsp;device:&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;av.get_accelerator().description&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;concurrency::extent&lt;<span class="js__num">2</span>&gt;&nbsp;ext(width,&nbsp;height);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;array_view&lt;int,&nbsp;<span class="js__num">2</span>&gt;&nbsp;view(ext,&nbsp;data);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;printf</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;parallel_for_each(av,&nbsp;ext,&nbsp;[=](index&lt;<span class="js__num">2</span>&gt;&nbsp;idx)&nbsp;restrict(amp)&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view[idx]&#43;&#43;;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;direct3d_printf(<span class="js__string">&quot;&nbsp;&nbsp;&nbsp;view[%d,%d]&nbsp;=&nbsp;%d\n&quot;</span>,&nbsp;idx[<span class="js__num">0</span>],&nbsp;idx[<span class="js__num">1</span>],&nbsp;view[idx]);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;Limit&nbsp;is&nbsp;7&nbsp;parameters,&nbsp;will&nbsp;throw&nbsp;exception&nbsp;in&nbsp;RELEASE</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;view.synchronize();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;errorf</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">try</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parallel_for_each(av,&nbsp;ext,&nbsp;[=](index&lt;<span class="js__num">2</span>&gt;&nbsp;idx)&nbsp;restrict(amp)&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;direct3d_errorf(<span class="js__string">&quot;&nbsp;&nbsp;&nbsp;errorf:&nbsp;av[idx]&nbsp;=&nbsp;%d\n&quot;</span>,&nbsp;view[idx]);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view[idx]&nbsp;*=&nbsp;<span class="js__num">10</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view.synchronize();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">catch</span>(runtime_exception&amp;&nbsp;e)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;\n&nbsp;&nbsp;&nbsp;errorf&nbsp;caused&nbsp;runtime&nbsp;exception:&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;e.what()&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;abort</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">try</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parallel_for_each(av,&nbsp;ext,&nbsp;[=](index&lt;<span class="js__num">2</span>&gt;&nbsp;idx)&nbsp;restrict(amp)&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view[idx]&nbsp;*=&nbsp;<span class="js__num">10</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;direct3d_abort();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;This&nbsp;will&nbsp;terminate&nbsp;the&nbsp;program&nbsp;when&nbsp;debugging&nbsp;in&nbsp;GPU&nbsp;only&nbsp;mode</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view.synchronize();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">catch</span>(runtime_exception&amp;&nbsp;e)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;\n&nbsp;&nbsp;&nbsp;aborted:&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;e.what()&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>&nbsp;
+<span class="js__brace">}</span>&nbsp;
+</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">Please note that printf must be commented or removed once you have done debugging -&nbsp;when I ran my solution in RELEASE mode it caused the process to crash.&nbsp;</div>
+&nbsp;</div>
+<div class="endscriptcode">We've made it to measuring&nbsp;amp performance. You should be using array or use device.wait with array_view to get proper results. Still, I got some funny numbers when I ran my code. One thing important to understand is that parallel_for_each
+ code is asynchronous which looks as if it were synchronous to the host. That approximately means that once you invoke it the execution will be scheduled on the device and control will be returned to the host but you will be guaranteed that you can access data
+ only after the kernel execution completes. I skipped a topic on synchronisation between the device and the host but you will find well commented examples in the solution.</div>
+<div class="endscriptcode"></div>
+<div class="endscriptcode">
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C&#43;&#43;</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">cplusplus</span>
+<pre class="hidden">/*
+Measuring Performance 2. (In release mode)
+
+   device: NVIDIA Quadro 5000M
+
+   0 executed in  66991us ( 66ms) : copy-in    0us, kernel  66033us, copy 2  958us
+   1 executed in  19012us ( 19ms) : copy-in  994us, kernel  17023us, copy 2  994us
+   2 executed in  30010us ( 30ms) : copy-in    0us, kernel  29039us, copy 2  970us
+   3 executed in  48035us ( 48ms) : copy-in 1003us, kernel  45059us, copy 2 1972us
+   4 executed in  68055us ( 68ms) : copy-in  996us, kernel  66019us, copy 2 1039us
+   5 executed in  96026us ( 96ms) : copy-in  999us, kernel  93051us, copy 2 1975us
+   6 executed in 140032us (140ms) : copy-in 2008us, kernel 136021us, copy 2 2002us
+   7 executed in 192019us (192ms) : copy-in 1997us, kernel 187037us, copy 2 2984us
+   8 executed in 230028us (230ms) : copy-in 2996us, kernel 224043us, copy 2 2989us
+   9 executed in 281015us (281ms) : copy-in 3000us, kernel 275015us, copy 2 2998us
+
+Measuring Performance 2. (One more run)
+
+   device: NVIDIA Quadro 5000M
+
+   0 executed in  10997us ( 10ms) : copy-in  975us, kernel   9048us, copy 2  973us
+   1 executed in  18967us ( 18ms) : copy-in 1003us, kernel  16987us, copy 2  976us
+   2 executed in  31041us ( 31ms) : copy-in  999us, kernel  29009us, copy 2 1033us
+   3 executed in  48008us ( 48ms) : copy-in    0us, kernel  45996us, copy 2 2011us
+   4 executed in  68004us ( 68ms) : copy-in    0us, kernel  67023us, copy 2  980us
+   5 executed in  96010us ( 96ms) : copy-in 1000us, kernel  92998us, copy 2 2011us
+   6 executed in 140985us (140ms) : copy-in 2002us, kernel 137009us, copy 2 1973us
+   7 executed in 194028us (194ms) : copy-in 2003us, kernel 190041us, copy 2 1984us
+   8 executed in 228027us (228ms) : copy-in 3025us, kernel 223019us, copy 2 1983us
+   9 executed in 280027us (280ms) : copy-in 2996us, kernel 274053us, copy 2 2977us
+
+Measuring Performance 2. (Ran outside of VS)
+
+   device: NVIDIA Quadro 5000M
+
+   0 executed in  15565us ( 15ms) : copy-in 0us, kernel  15565us, copy 2     0us
+   1 executed in  15615us ( 15ms) : copy-in 0us, kernel  15615us, copy 2     0us
+   2 executed in  31177us ( 31ms) : copy-in 0us, kernel  31177us, copy 2     0us
+   3 executed in  46790us ( 46ms) : copy-in 0us, kernel  46790us, copy 2     0us
+   4 executed in  77949us ( 77ms) : copy-in 0us, kernel  62401us, copy 2 15547us
+   5 executed in 109174us (109ms) : copy-in 0us, kernel  93627us, copy 2 15546us
+   6 executed in 140438us (140ms) : copy-in 0us, kernel 124847us, copy 2 15591us
+   7 executed in 187180us (187ms) : copy-in 0us, kernel 187180us, copy 2     0us
+   8 executed in 234037us (234ms) : copy-in 0us, kernel 218435us, copy 2 15602us
+   9 executed in 280803us (280ms) : copy-in 0us, kernel 265210us, copy 2 15593us
+*/
+void AmpExamples::MeasurePerformance2()
+{
+	cout &lt;&lt; &quot;\nMeasuring Performance 2.\n\n&quot;;
+
+	time_point&lt;system_clock&gt; start = system_clock::now();
+	time_point&lt;system_clock&gt; stop = system_clock::now();
+	time_point&lt;system_clock&gt; tmStart = system_clock::now();
+
+	accelerator_view device = accelerator().default_view;
+	wcout &lt;&lt; L&quot;   device: &quot; &lt;&lt; device.accelerator.description &lt;&lt; endl &lt;&lt; endl;
+
+	WarmUp(device);
+
+	// 10 samples increasing amount of data by i in each loop
+	for (int i = 0; i &lt; 10; &#43;&#43;i)
+	{
+		// NUmber of rows and columns for both matrices
+		const int r1 = 300 &#43; 100 * i;
+		const int c1 = 500 &#43; 100 * i;
+		const int r2 = c1;
+		const int c2 = 400 &#43; 100 * i;
+
+		assert(c1 == r2);					// columns in m1 == rows in m2
+
+		vector&lt;float&gt; va(r1 * c1);
+		vector&lt;float&gt; vb(r2 * c2);
+		vector&lt;float&gt; vc(r1 * c2);			// resultant matrix
+
+		RandomFill(va);
+		RandomFill(vb);
+
+		concurrency::extent&lt;2&gt; ea(r1, c1);
+		concurrency::extent&lt;2&gt; eb(r2, c2);
+		concurrency::extent&lt;2&gt; ec(r1, c2);
+
+		// Using arrays only to measure performance. If using arrqay_view, we have 
+		// to manually force synchronization because parallel_for_each is async.
+		// When parallel_for_each returns, then computation is only scheduled on the device. 
+		// To force execution you need to call wait() on accelerator_view. 
+		array&lt;float, 2&gt; a(ea);
+		array&lt;float, 2&gt; b(eb);
+		array&lt;float, 2&gt; c(ec);
+
+		// Copy underlying data to the device
+		tmStart = system_clock::now();
+		start = system_clock::now();
+
+		copy(va.begin(), a);
+		copy(vb.begin(), b);
+
+		stop = system_clock::now();
+		long long tmCopy1 = duration_cast&lt;microseconds&gt;(stop - start).count();
+
+		// Run kernel
+		start = system_clock::now();
+
+		MultiplyMatrices(device, c, a, b);
+
+		device.wait();					// Ensure that kernel completed execution!!!
+
+		stop = system_clock::now();
+		long long tmKernel = duration_cast&lt;microseconds&gt;(stop - start).count();
+
+		// Copy data back to the host
+		start = system_clock::now();
+
+		copy(c, vc.begin());
+
+		stop = system_clock::now();
+		long long tmCopy2 = duration_cast&lt;microseconds&gt;(stop - start).count();
+
+		long long ms = duration_cast&lt;milliseconds&gt;(stop - tmStart).count();
+		long long us = duration_cast&lt;microseconds&gt;(stop - tmStart).count();
+		cout &lt;&lt; &quot;   &quot; &lt;&lt; i &lt;&lt; &quot; executed in &quot; &lt;&lt; us &lt;&lt; &quot;us (&quot; &lt;&lt; ms &lt;&lt; &quot;ms)&quot; 
+			 &lt;&lt; &quot; : copy-in &quot; &lt;&lt; tmCopy1 
+			 &lt;&lt; &quot;us, kernel &quot; &lt;&lt; tmKernel
+			 &lt;&lt; &quot;us, copy 2 &quot; &lt;&lt; tmCopy2 
+			 &lt;&lt; &quot;us&quot; &lt;&lt;  endl;
+	}
+}
+</pre>
+<div class="preview">
+<pre class="js"><span class="js__ml_comment">/*&nbsp;
+Measuring&nbsp;Performance&nbsp;2.&nbsp;(In&nbsp;release&nbsp;mode)&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;device:&nbsp;NVIDIA&nbsp;Quadro&nbsp;5000M&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;0&nbsp;executed&nbsp;in&nbsp;&nbsp;66991us&nbsp;(&nbsp;66ms)&nbsp;:&nbsp;copy-in&nbsp;&nbsp;&nbsp;&nbsp;0us,&nbsp;kernel&nbsp;&nbsp;66033us,&nbsp;copy&nbsp;2&nbsp;&nbsp;958us&nbsp;
+&nbsp;&nbsp;&nbsp;1&nbsp;executed&nbsp;in&nbsp;&nbsp;19012us&nbsp;(&nbsp;19ms)&nbsp;:&nbsp;copy-in&nbsp;&nbsp;994us,&nbsp;kernel&nbsp;&nbsp;17023us,&nbsp;copy&nbsp;2&nbsp;&nbsp;994us&nbsp;
+&nbsp;&nbsp;&nbsp;2&nbsp;executed&nbsp;in&nbsp;&nbsp;30010us&nbsp;(&nbsp;30ms)&nbsp;:&nbsp;copy-in&nbsp;&nbsp;&nbsp;&nbsp;0us,&nbsp;kernel&nbsp;&nbsp;29039us,&nbsp;copy&nbsp;2&nbsp;&nbsp;970us&nbsp;
+&nbsp;&nbsp;&nbsp;3&nbsp;executed&nbsp;in&nbsp;&nbsp;48035us&nbsp;(&nbsp;48ms)&nbsp;:&nbsp;copy-in&nbsp;1003us,&nbsp;kernel&nbsp;&nbsp;45059us,&nbsp;copy&nbsp;2&nbsp;1972us&nbsp;
+&nbsp;&nbsp;&nbsp;4&nbsp;executed&nbsp;in&nbsp;&nbsp;68055us&nbsp;(&nbsp;68ms)&nbsp;:&nbsp;copy-in&nbsp;&nbsp;996us,&nbsp;kernel&nbsp;&nbsp;66019us,&nbsp;copy&nbsp;2&nbsp;1039us&nbsp;
+&nbsp;&nbsp;&nbsp;5&nbsp;executed&nbsp;in&nbsp;&nbsp;96026us&nbsp;(&nbsp;96ms)&nbsp;:&nbsp;copy-in&nbsp;&nbsp;999us,&nbsp;kernel&nbsp;&nbsp;93051us,&nbsp;copy&nbsp;2&nbsp;1975us&nbsp;
+&nbsp;&nbsp;&nbsp;6&nbsp;executed&nbsp;in&nbsp;140032us&nbsp;(140ms)&nbsp;:&nbsp;copy-in&nbsp;2008us,&nbsp;kernel&nbsp;136021us,&nbsp;copy&nbsp;2&nbsp;2002us&nbsp;
+&nbsp;&nbsp;&nbsp;7&nbsp;executed&nbsp;in&nbsp;192019us&nbsp;(192ms)&nbsp;:&nbsp;copy-in&nbsp;1997us,&nbsp;kernel&nbsp;187037us,&nbsp;copy&nbsp;2&nbsp;2984us&nbsp;
+&nbsp;&nbsp;&nbsp;8&nbsp;executed&nbsp;in&nbsp;230028us&nbsp;(230ms)&nbsp;:&nbsp;copy-in&nbsp;2996us,&nbsp;kernel&nbsp;224043us,&nbsp;copy&nbsp;2&nbsp;2989us&nbsp;
+&nbsp;&nbsp;&nbsp;9&nbsp;executed&nbsp;in&nbsp;281015us&nbsp;(281ms)&nbsp;:&nbsp;copy-in&nbsp;3000us,&nbsp;kernel&nbsp;275015us,&nbsp;copy&nbsp;2&nbsp;2998us&nbsp;
+&nbsp;
+Measuring&nbsp;Performance&nbsp;2.&nbsp;(One&nbsp;more&nbsp;run)&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;device:&nbsp;NVIDIA&nbsp;Quadro&nbsp;5000M&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;0&nbsp;executed&nbsp;in&nbsp;&nbsp;10997us&nbsp;(&nbsp;10ms)&nbsp;:&nbsp;copy-in&nbsp;&nbsp;975us,&nbsp;kernel&nbsp;&nbsp;&nbsp;9048us,&nbsp;copy&nbsp;2&nbsp;&nbsp;973us&nbsp;
+&nbsp;&nbsp;&nbsp;1&nbsp;executed&nbsp;in&nbsp;&nbsp;18967us&nbsp;(&nbsp;18ms)&nbsp;:&nbsp;copy-in&nbsp;1003us,&nbsp;kernel&nbsp;&nbsp;16987us,&nbsp;copy&nbsp;2&nbsp;&nbsp;976us&nbsp;
+&nbsp;&nbsp;&nbsp;2&nbsp;executed&nbsp;in&nbsp;&nbsp;31041us&nbsp;(&nbsp;31ms)&nbsp;:&nbsp;copy-in&nbsp;&nbsp;999us,&nbsp;kernel&nbsp;&nbsp;29009us,&nbsp;copy&nbsp;2&nbsp;1033us&nbsp;
+&nbsp;&nbsp;&nbsp;3&nbsp;executed&nbsp;in&nbsp;&nbsp;48008us&nbsp;(&nbsp;48ms)&nbsp;:&nbsp;copy-in&nbsp;&nbsp;&nbsp;&nbsp;0us,&nbsp;kernel&nbsp;&nbsp;45996us,&nbsp;copy&nbsp;2&nbsp;2011us&nbsp;
+&nbsp;&nbsp;&nbsp;4&nbsp;executed&nbsp;in&nbsp;&nbsp;68004us&nbsp;(&nbsp;68ms)&nbsp;:&nbsp;copy-in&nbsp;&nbsp;&nbsp;&nbsp;0us,&nbsp;kernel&nbsp;&nbsp;67023us,&nbsp;copy&nbsp;2&nbsp;&nbsp;980us&nbsp;
+&nbsp;&nbsp;&nbsp;5&nbsp;executed&nbsp;in&nbsp;&nbsp;96010us&nbsp;(&nbsp;96ms)&nbsp;:&nbsp;copy-in&nbsp;1000us,&nbsp;kernel&nbsp;&nbsp;92998us,&nbsp;copy&nbsp;2&nbsp;2011us&nbsp;
+&nbsp;&nbsp;&nbsp;6&nbsp;executed&nbsp;in&nbsp;140985us&nbsp;(140ms)&nbsp;:&nbsp;copy-in&nbsp;2002us,&nbsp;kernel&nbsp;137009us,&nbsp;copy&nbsp;2&nbsp;1973us&nbsp;
+&nbsp;&nbsp;&nbsp;7&nbsp;executed&nbsp;in&nbsp;194028us&nbsp;(194ms)&nbsp;:&nbsp;copy-in&nbsp;2003us,&nbsp;kernel&nbsp;190041us,&nbsp;copy&nbsp;2&nbsp;1984us&nbsp;
+&nbsp;&nbsp;&nbsp;8&nbsp;executed&nbsp;in&nbsp;228027us&nbsp;(228ms)&nbsp;:&nbsp;copy-in&nbsp;3025us,&nbsp;kernel&nbsp;223019us,&nbsp;copy&nbsp;2&nbsp;1983us&nbsp;
+&nbsp;&nbsp;&nbsp;9&nbsp;executed&nbsp;in&nbsp;280027us&nbsp;(280ms)&nbsp;:&nbsp;copy-in&nbsp;2996us,&nbsp;kernel&nbsp;274053us,&nbsp;copy&nbsp;2&nbsp;2977us&nbsp;
+&nbsp;
+Measuring&nbsp;Performance&nbsp;2.&nbsp;(Ran&nbsp;outside&nbsp;of&nbsp;VS)&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;device:&nbsp;NVIDIA&nbsp;Quadro&nbsp;5000M&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;0&nbsp;executed&nbsp;in&nbsp;&nbsp;15565us&nbsp;(&nbsp;15ms)&nbsp;:&nbsp;copy-in&nbsp;0us,&nbsp;kernel&nbsp;&nbsp;15565us,&nbsp;copy&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0us&nbsp;
+&nbsp;&nbsp;&nbsp;1&nbsp;executed&nbsp;in&nbsp;&nbsp;15615us&nbsp;(&nbsp;15ms)&nbsp;:&nbsp;copy-in&nbsp;0us,&nbsp;kernel&nbsp;&nbsp;15615us,&nbsp;copy&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0us&nbsp;
+&nbsp;&nbsp;&nbsp;2&nbsp;executed&nbsp;in&nbsp;&nbsp;31177us&nbsp;(&nbsp;31ms)&nbsp;:&nbsp;copy-in&nbsp;0us,&nbsp;kernel&nbsp;&nbsp;31177us,&nbsp;copy&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0us&nbsp;
+&nbsp;&nbsp;&nbsp;3&nbsp;executed&nbsp;in&nbsp;&nbsp;46790us&nbsp;(&nbsp;46ms)&nbsp;:&nbsp;copy-in&nbsp;0us,&nbsp;kernel&nbsp;&nbsp;46790us,&nbsp;copy&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0us&nbsp;
+&nbsp;&nbsp;&nbsp;4&nbsp;executed&nbsp;in&nbsp;&nbsp;77949us&nbsp;(&nbsp;77ms)&nbsp;:&nbsp;copy-in&nbsp;0us,&nbsp;kernel&nbsp;&nbsp;62401us,&nbsp;copy&nbsp;2&nbsp;15547us&nbsp;
+&nbsp;&nbsp;&nbsp;5&nbsp;executed&nbsp;in&nbsp;109174us&nbsp;(109ms)&nbsp;:&nbsp;copy-in&nbsp;0us,&nbsp;kernel&nbsp;&nbsp;93627us,&nbsp;copy&nbsp;2&nbsp;15546us&nbsp;
+&nbsp;&nbsp;&nbsp;6&nbsp;executed&nbsp;in&nbsp;140438us&nbsp;(140ms)&nbsp;:&nbsp;copy-in&nbsp;0us,&nbsp;kernel&nbsp;124847us,&nbsp;copy&nbsp;2&nbsp;15591us&nbsp;
+&nbsp;&nbsp;&nbsp;7&nbsp;executed&nbsp;in&nbsp;187180us&nbsp;(187ms)&nbsp;:&nbsp;copy-in&nbsp;0us,&nbsp;kernel&nbsp;187180us,&nbsp;copy&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0us&nbsp;
+&nbsp;&nbsp;&nbsp;8&nbsp;executed&nbsp;in&nbsp;234037us&nbsp;(234ms)&nbsp;:&nbsp;copy-in&nbsp;0us,&nbsp;kernel&nbsp;218435us,&nbsp;copy&nbsp;2&nbsp;15602us&nbsp;
+&nbsp;&nbsp;&nbsp;9&nbsp;executed&nbsp;in&nbsp;280803us&nbsp;(280ms)&nbsp;:&nbsp;copy-in&nbsp;0us,&nbsp;kernel&nbsp;265210us,&nbsp;copy&nbsp;2&nbsp;15593us&nbsp;
+*/</span>&nbsp;
+<span class="js__operator">void</span>&nbsp;AmpExamples::MeasurePerformance2()&nbsp;
+<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;\nMeasuring&nbsp;Performance&nbsp;2.\n\n&quot;</span>;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;time_point&lt;system_clock&gt;&nbsp;start&nbsp;=&nbsp;system_clock::now();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;time_point&lt;system_clock&gt;&nbsp;stop&nbsp;=&nbsp;system_clock::now();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;time_point&lt;system_clock&gt;&nbsp;tmStart&nbsp;=&nbsp;system_clock::now();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;accelerator_view&nbsp;device&nbsp;=&nbsp;accelerator().default_view;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;wcout&nbsp;&lt;&lt;&nbsp;L<span class="js__string">&quot;&nbsp;&nbsp;&nbsp;device:&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;device.accelerator.description&nbsp;&lt;&lt;&nbsp;endl&nbsp;&lt;&lt;&nbsp;endl;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;WarmUp(device);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;10&nbsp;samples&nbsp;increasing&nbsp;amount&nbsp;of&nbsp;data&nbsp;by&nbsp;i&nbsp;in&nbsp;each&nbsp;loop</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">for</span>&nbsp;(int&nbsp;i&nbsp;=&nbsp;<span class="js__num">0</span>;&nbsp;i&nbsp;&lt;&nbsp;<span class="js__num">10</span>;&nbsp;&#43;&#43;i)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">{</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;NUmber&nbsp;of&nbsp;rows&nbsp;and&nbsp;columns&nbsp;for&nbsp;both&nbsp;matrices</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">const</span>&nbsp;int&nbsp;r1&nbsp;=&nbsp;<span class="js__num">300</span>&nbsp;&#43;&nbsp;<span class="js__num">100</span>&nbsp;*&nbsp;i;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">const</span>&nbsp;int&nbsp;c1&nbsp;=&nbsp;<span class="js__num">500</span>&nbsp;&#43;&nbsp;<span class="js__num">100</span>&nbsp;*&nbsp;i;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">const</span>&nbsp;int&nbsp;r2&nbsp;=&nbsp;c1;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__statement">const</span>&nbsp;int&nbsp;c2&nbsp;=&nbsp;<span class="js__num">400</span>&nbsp;&#43;&nbsp;<span class="js__num">100</span>&nbsp;*&nbsp;i;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(c1&nbsp;==&nbsp;r2);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;columns&nbsp;in&nbsp;m1&nbsp;==&nbsp;rows&nbsp;in&nbsp;m2</span>&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector&lt;float&gt;&nbsp;va(r1&nbsp;*&nbsp;c1);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector&lt;float&gt;&nbsp;vb(r2&nbsp;*&nbsp;c2);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vector&lt;float&gt;&nbsp;vc(r1&nbsp;*&nbsp;c2);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;resultant&nbsp;matrix</span>&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RandomFill(va);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RandomFill(vb);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;concurrency::extent&lt;<span class="js__num">2</span>&gt;&nbsp;ea(r1,&nbsp;c1);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;concurrency::extent&lt;<span class="js__num">2</span>&gt;&nbsp;eb(r2,&nbsp;c2);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;concurrency::extent&lt;<span class="js__num">2</span>&gt;&nbsp;ec(r1,&nbsp;c2);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;Using&nbsp;arrays&nbsp;only&nbsp;to&nbsp;measure&nbsp;performance.&nbsp;If&nbsp;using&nbsp;arrqay_view,&nbsp;we&nbsp;have&nbsp;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;to&nbsp;manually&nbsp;force&nbsp;synchronization&nbsp;because&nbsp;parallel_for_each&nbsp;is&nbsp;async.</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;When&nbsp;parallel_for_each&nbsp;returns,&nbsp;then&nbsp;computation&nbsp;is&nbsp;only&nbsp;scheduled&nbsp;on&nbsp;the&nbsp;device.&nbsp;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;To&nbsp;force&nbsp;execution&nbsp;you&nbsp;need&nbsp;to&nbsp;call&nbsp;wait()&nbsp;on&nbsp;accelerator_view.&nbsp;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array&lt;float,&nbsp;<span class="js__num">2</span>&gt;&nbsp;a(ea);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array&lt;float,&nbsp;<span class="js__num">2</span>&gt;&nbsp;b(eb);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array&lt;float,&nbsp;<span class="js__num">2</span>&gt;&nbsp;c(ec);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;Copy&nbsp;underlying&nbsp;data&nbsp;to&nbsp;the&nbsp;device</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tmStart&nbsp;=&nbsp;system_clock::now();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start&nbsp;=&nbsp;system_clock::now();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;copy(va.begin(),&nbsp;a);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;copy(vb.begin(),&nbsp;b);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stop&nbsp;=&nbsp;system_clock::now();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long&nbsp;long&nbsp;tmCopy1&nbsp;=&nbsp;duration_cast&lt;microseconds&gt;(stop&nbsp;-&nbsp;start).count();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;Run&nbsp;kernel</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start&nbsp;=&nbsp;system_clock::now();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MultiplyMatrices(device,&nbsp;c,&nbsp;a,&nbsp;b);&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;device.wait();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;Ensure&nbsp;that&nbsp;kernel&nbsp;completed&nbsp;execution!!!</span>&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stop&nbsp;=&nbsp;system_clock::now();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long&nbsp;long&nbsp;tmKernel&nbsp;=&nbsp;duration_cast&lt;microseconds&gt;(stop&nbsp;-&nbsp;start).count();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__sl_comment">//&nbsp;Copy&nbsp;data&nbsp;back&nbsp;to&nbsp;the&nbsp;host</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start&nbsp;=&nbsp;system_clock::now();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;copy(c,&nbsp;vc.begin());&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stop&nbsp;=&nbsp;system_clock::now();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long&nbsp;long&nbsp;tmCopy2&nbsp;=&nbsp;duration_cast&lt;microseconds&gt;(stop&nbsp;-&nbsp;start).count();&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long&nbsp;long&nbsp;ms&nbsp;=&nbsp;duration_cast&lt;milliseconds&gt;(stop&nbsp;-&nbsp;tmStart).count();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long&nbsp;long&nbsp;us&nbsp;=&nbsp;duration_cast&lt;microseconds&gt;(stop&nbsp;-&nbsp;tmStart).count();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;&nbsp;&nbsp;&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;i&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;&nbsp;executed&nbsp;in&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;us&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;us&nbsp;(&quot;</span>&nbsp;&lt;&lt;&nbsp;ms&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;ms)&quot;</span>&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;&nbsp;:&nbsp;copy-in&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;tmCopy1&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;us,&nbsp;kernel&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;tmKernel&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;us,&nbsp;copy&nbsp;2&nbsp;&quot;</span>&nbsp;&lt;&lt;&nbsp;tmCopy2&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;&nbsp;<span class="js__string">&quot;us&quot;</span>&nbsp;&lt;&lt;&nbsp;&nbsp;endl;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="js__brace">}</span>&nbsp;
+<span class="js__brace">}</span>&nbsp;
+</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">Enjoy!</div>
+</div>
+<div class="endscriptcode"></div>
+</span>
+<div class="endscriptcode"></div>
+<div class="endscriptcode"></div>
+</div>
+<div><span>&nbsp;</span></div>
+<h1><span>Source Code Files</span></h1>
+<ul>
+<li><em>AmpExamples - contain 46 functions, each demonstraiting different C&#43;&#43; AMP concept</em>
+</li></ul>
+<h1><em>&nbsp;</em></h1>
+
+</div>
+
+
+    </div>
+</body>
+</html>

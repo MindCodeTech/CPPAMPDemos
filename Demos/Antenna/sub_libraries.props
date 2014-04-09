@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <LAPACK_LIB_FILES_32>liblapack.lib;libblas.lib</LAPACK_LIB_FILES_32>
+    <LAPACK_LIB_PATH_32>D:\LAPACKE_examples\lib</LAPACK_LIB_PATH_32>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)\amplapack\amplapack\inc;$(SolutionDir)\amplapack\ampblas\ampblas\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LAPACK_LOWER_UNDERSCORE;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="LAPACK_LIB_FILES_32">
+      <Value>$(LAPACK_LIB_FILES_32)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="LAPACK_LIB_PATH_32">
+      <Value>$(LAPACK_LIB_PATH_32)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

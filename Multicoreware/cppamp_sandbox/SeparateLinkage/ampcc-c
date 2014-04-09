@@ -1,0 +1,34 @@
+#!/bin/sh
+
+#Change following environment variables to your seeting
+CLANG_AMP_HOME=$HOME/Development/cppamp-driver/ # where you checkout source
+CLANG_AMP_BUILD_DIR=$HOME/Development/cppamp-driver/build # where you build
+
+#OpenCL settings
+# For NVIDIA
+#OPENCL_INC=/usr/local/cuda/include
+# For ATI
+OPENCL_INC=/opt/AMDAPP/include
+###############################################################
+CLANG_AMP=$CLANG_AMP_BUILD_DIR/compiler/bin/clang++
+LIBCXX_INC=$CLANG_AMP_HOME/libc++/libcxx/include
+LIBCXX_LIB=$CLANG_AMP_BUILD_DIR/libc++/libcxx/lib
+LIBCXXRT_LIB=$CLANG_AMP_BUILD_DIR/libc++/libcxxrt/lib
+GMAC_INC=$CLANG_AMP_HOME/gmac/src/include
+GMAC_BUILD_INC=$CLANG_AMP_BUILD_DIR/gmac/src/include/
+
+
+SHARED_CXXFLAGS="--std=c++amp -I./include \
+  -I$OPENCL_INC -I$LIBCXX_INC -I$GMAC_INC -I$GMAC_BUILD_INC -I$CLANG_AMP_HOME/include"
+
+# GPU
+echo "Compiling for GPU path; output is $1.bc"
+$CLANG_AMP $SHARED_CXXFLAGS -m32 -D__GPU__=1 -Xclang -fcuda-is-device \
+  -emit-llvm -c -O2 $1 -o $1.bc
+if [ -f $1.bc ]; then
+# CPU Path
+echo "Compiling for CPU path"
+$CLANG_AMP $SHARED_CXXFLAGS $1 -D__CPU__=1 -c -g
+else
+	echo "Problem compiling the GPU kernel."
+fi

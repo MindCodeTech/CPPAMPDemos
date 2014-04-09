@@ -1,0 +1,33 @@
+#!/bin/sh
+
+#Change following environment variables to your seeting
+CLANG_AMP_HOME=$HOME/Development/cppamp-driver/ # where you checkout source
+CLANG_AMP_BUILD_DIR=$HOME/Development/cppamp-driver/build # where you build
+
+#OpenCL settings
+# For NVIDIA
+#OPENCL_INC=/usr/local/cuda/include
+# For ATI
+OPENCL_INC=/opt/AMDAPP/include
+###############################################################
+CLANG_AMP=$CLANG_AMP_BUILD_DIR/compiler/bin/clang++
+LIBCXX_INC=$CLANG_AMP_HOME/libc++/libcxx/include
+LIBCXX_LIB=$CLANG_AMP_BUILD_DIR/libc++/libcxx/lib
+LIBCXXRT_LIB=$CLANG_AMP_BUILD_DIR/libc++/libcxxrt/lib
+GMAC_INC=$CLANG_AMP_HOME/gmac/src/include
+GMAC_LIB=$CLANG_AMP_HOME/gmac
+
+
+SHARED_CXXFLAGS="--std=c++amp -I./include -I$OPENCL_INC -I$LIBCXX_INC -I$GMAC_INC -I$CLANG_AMP_HOME/include"
+
+# GPU
+echo "Generate kernel from $@; output C file is kernel.cl"
+$CLANG_AMP_BUILD_DIR/compiler/bin/llvm-link "$@" |\
+$CLANG_AMP_BUILD_DIR/compiler/bin/llc - -march=c -o kernel_.cl
+cat $CLANG_AMP_HOME/include/opencl_math.cl kernel_.cl > kernel.cl
+if [ -f kernel.cl ]; then
+echo "Create embeddable kernel object kernel.o"
+%embed_kernel kernel.cl kernel.o
+else
+	echo "Problem generating the GPU kernel."
+fi

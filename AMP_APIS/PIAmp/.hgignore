@@ -1,0 +1,9 @@
+syntax: glob
+Debug/**
+*.ncrunchsolution
+*.ncrunchsolution.user
+*.opensdf
+*.sdf
+*.suo
+ipch/**
+*.DotSettings

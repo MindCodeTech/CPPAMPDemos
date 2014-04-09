@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Assets">
+      <UniqueIdentifier>ebe3efb8-6f46-49ca-b5c5-ef2228877d62</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Content">
+      <UniqueIdentifier>7267588b-96f8-4c03-a960-dc3691356a37</UniqueIdentifier>
+    </Filter>
+    <Image Include="Assets\Logo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SmallLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SplashScreen.png">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MultiThreaded_TemporaryKey.pfx" />
+    <None Include="Graphics\Shaders\DefaultVertexShader.inc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Scenes\Window.h" />
+    <ClInclude Include="Scenes\SimpleScene.h" />
+    <ClInclude Include="Graphics\VertexTypes.h" />
+    <ClInclude Include="Graphics\Fonts\SpriteFont.h" />
+    <ClInclude Include="Graphics\Models\Model.h" />
+    <ClInclude Include="Graphics\Models\ModelManager.h" />
+    <ClInclude Include="Graphics\Shaders\CBuffer.h" />
+    <ClInclude Include="Graphics\Shaders\Shader.h" />
+    <ClInclude Include="Graphics\Textures\DDSTextureLoader.h" />
+    <ClInclude Include="Graphics\Textures\Texture2D.h" />
+    <ClInclude Include="Graphics\SpriteBatch.h" />
+    <ClInclude Include="FrameWork\Cameras\BaseCamera.h" />
+    <ClInclude Include="FrameWork\Cameras\FirstCamera.h" />
+    <ClInclude Include="FrameWork\Input\GamePadState.h" />
+    <ClInclude Include="FrameWork\Input\InputManager.h" />
+    <ClInclude Include="FrameWork\Input\KeyboardState.h" />
+    <ClInclude Include="FrameWork\Input\PointerState.h" />
+    <ClInclude Include="FrameWork\System\CpuInfo.h" />
+    <ClInclude Include="FrameWork\System\FPS.h" />
+    <ClInclude Include="FrameWork\System\Perf.h" />
+    <ClInclude Include="FrameWork\Game.h" />
+    <ClInclude Include="FrameWork\MathHelper.h" />
+    <ClInclude Include="FrameWork\Timer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Scenes\SimpleScene.cpp" />
+    <ClCompile Include="Scenes\Window.cpp" />
+    <ClCompile Include="Graphics\Fonts\SpriteFont.cpp" />
+    <ClCompile Include="Graphics\Models\Model.cpp" />
+    <ClCompile Include="Graphics\Models\ModelManager.cpp" />
+    <ClCompile Include="Graphics\Shaders\Shader.cpp" />
+    <ClCompile Include="Graphics\Textures\DDSTextureLoader.cpp" />
+    <ClCompile Include="Graphics\Textures\Texture2D.cpp" />
+    <ClCompile Include="Graphics\SpriteBatch.cpp" />
+    <ClCompile Include="FrameWork\Cameras\BaseCamera.cpp" />
+    <ClCompile Include="FrameWork\Cameras\FirstCamera.cpp" />
+    <ClCompile Include="FrameWork\Input\GamePadState.cpp" />
+    <ClCompile Include="FrameWork\Input\InputManager.cpp" />
+    <ClCompile Include="FrameWork\Input\KeyboardState.cpp" />
+    <ClCompile Include="FrameWork\Input\PointerState.cpp" />
+    <ClCompile Include="FrameWork\System\CpuInfo.cpp" />
+    <ClCompile Include="FrameWork\System\FPS.cpp" />
+    <ClCompile Include="FrameWork\System\Perf.cpp" />
+    <ClCompile Include="FrameWork\Game.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ShaderGraphContentTask Include="Assets\Phong.dgsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <MeshContentTask Include="Assets\Scene.fbx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\Saucer.dds" />
+  </ItemGroup>
+</Project>

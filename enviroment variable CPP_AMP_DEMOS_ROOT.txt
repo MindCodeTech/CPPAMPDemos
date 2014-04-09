@@ -1,0 +1,1 @@
+CPP_AMP_DEMOS_ROOT = C:\your directory for\CPP_AMP_DEMOS_ROOT
